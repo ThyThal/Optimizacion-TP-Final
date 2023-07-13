@@ -5,7 +5,7 @@ using UnityEngine;
 public class CustomColliderSphere : CustomColliderBase
 {
     public float radius = 0.5f;
-    public Vector3 normal;
+    public Vector2 normal;
 
     public override bool CheckCollision(ICollider other)
     {

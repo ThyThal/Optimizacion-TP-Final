@@ -19,12 +19,11 @@ public class CustomColliderBox : CustomColliderBase
         else if (other is CustomColliderSphere sphereCollider)
         {
             // Check collision between a box collider and a sphere collider
-            if (CheckBoxSphereCollision(this, sphereCollider))
-            {
-                // Handle collision between the box collider and the sphere collider
-                CalculateCollisionNormal(this, sphereCollider);
-                return true;
-            }
+            if (!CheckBoxSphereCollision(this, sphereCollider)) return false;
+            
+            // Handle collision between the box collider and the sphere collider
+            CalculateCollisionNormal(this, sphereCollider);
+            return true;
         }
 
         return false;
@@ -34,10 +33,10 @@ public class CustomColliderBox : CustomColliderBase
     {
         if (boxCollider == null || sphereCollider == null) return false;
 
-        Vector3 closestPoint = Vector3.Max(boxCollider.transform.position - _transform.localScale * 0.5f,
-                               Vector3.Min(sphereCollider.transform.position, boxCollider.transform.position + _transform.localScale * 0.5f));
+        Vector2 closestPoint = Vector2.Max(boxCollider.transform.position - _transform.localScale * 0.5f,
+                               Vector2.Min(sphereCollider.transform.position, boxCollider.transform.position + _transform.localScale * 0.5f));
 
-        float distance = Vector3.Distance(closestPoint, sphereCollider.transform.position);
+        float distance = Vector2.Distance(closestPoint, sphereCollider.transform.position);
 
         return distance <= sphereCollider.radius;
     }
@@ -45,7 +44,7 @@ public class CustomColliderBox : CustomColliderBase
     protected override void DrawGizmo()
     {
         // Get the center position of the collider
-        Vector3 center = this.transform.position;
+        Vector2 center = this.transform.position;
 
         // Draw the wire cube representing the box collider
         Gizmos.DrawWireCube(center, transform.localScale);
@@ -53,7 +52,7 @@ public class CustomColliderBox : CustomColliderBase
 
     private void CalculateCollisionNormal(CustomColliderBox boxCollider, CustomColliderSphere sphereCollider)
     {
-        Vector3 collisionNormal = Vector3.zero;
+        Vector2 collisionNormal = Vector2.zero;
 
         if (boxCollider is CustomColliderBox colliderBox && sphereCollider is CustomColliderSphere colliderSphere)
         {
@@ -64,16 +63,16 @@ public class CustomColliderBox : CustomColliderBase
         sphereCollider.normal = collisionNormal;
     }
 
-    private Vector3 CalculateBoxSphereCollisionNormal(CustomColliderBox boxCollider, CustomColliderSphere sphereCollider)
+    private Vector2 CalculateBoxSphereCollisionNormal(CustomColliderBox boxCollider, CustomColliderSphere sphereCollider)
     {
         // Calculate the center of the sphere
-        Vector3 sphereCenter = sphereCollider.transform.position;
+        Vector2 sphereCenter = sphereCollider.transform.position;
 
         // Calculate the closest point on the box collider's surface to the sphere's center
-        Vector3 closestPoint = GetClosestPointOnBox(boxCollider, sphereCenter);
+        Vector2 closestPoint = GetClosestPointOnBox(boxCollider, sphereCenter);
 
         // Calculate the collision normal by subtracting the closest point from the sphere's center
-        Vector3 collisionNormal = sphereCenter - closestPoint;
+        Vector2 collisionNormal = sphereCenter - closestPoint;
 
         // Normalize the collision normal
         collisionNormal.Normalize();
@@ -81,27 +80,26 @@ public class CustomColliderBox : CustomColliderBase
         return collisionNormal;
     }
 
-    private Vector3 GetClosestPointOnBox(CustomColliderBox boxCollider, Vector3 point)
+    private Vector2 GetClosestPointOnBox(CustomColliderBox boxCollider, Vector2 point)
     {
         // Calculate the center and size of the box collider
-        Vector3 boxCenter = boxCollider.transform.position;
-        Vector3 boxSize = _transform.localScale;
+        Vector2 boxCenter = boxCollider.transform.position;
+        Vector2 boxSize = _transform.localScale;
 
         // Calculate the half extents of the box collider
-        Vector3 halfExtents = boxSize * 0.5f;
+        Vector2 halfExtents = boxSize * 0.5f;
 
         // Calculate the direction from the box's center to the point
-        Vector3 direction = point - boxCenter;
+        Vector2 direction = point - boxCenter;
 
         // Clamp the direction vector to the box's extents
-        Vector3 clampedDirection = new Vector3(
+        Vector2 clampedDirection = new Vector3(
             Mathf.Clamp(direction.x, -halfExtents.x, halfExtents.x),
-            Mathf.Clamp(direction.y, -halfExtents.y, halfExtents.y),
-            Mathf.Clamp(direction.z, -halfExtents.z, halfExtents.z)
+            Mathf.Clamp(direction.y, -halfExtents.y, halfExtents.y)
         );
 
         // Calculate the closest point on the box's surface
-        Vector3 closestPoint = boxCenter + clampedDirection;
+        Vector2 closestPoint = boxCenter + clampedDirection;
 
         return closestPoint;
     }

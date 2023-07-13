@@ -9,13 +9,10 @@ public abstract class CustomColliderBase : MonoBehaviourGameplay, ICollider
 
     protected abstract void DrawGizmo();
 
-    // Gizmo color for the collider
-    protected Color gizmoColor = Color.yellow;
-
     protected virtual void OnDrawGizmos()
     {
         // Set the gizmo color
-        Gizmos.color = gizmoColor;
+        Gizmos.color = Color.yellow;
 
         // Draw the collider shape gizmo
         DrawGizmo();
