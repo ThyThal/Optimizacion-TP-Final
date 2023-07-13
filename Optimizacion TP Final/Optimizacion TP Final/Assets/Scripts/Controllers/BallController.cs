@@ -19,4 +19,9 @@ public class BallController : MonoBehaviourGameplay
     {
         _physics.Reflect(_collider.normal);
     }
+
+    public void DestroyBall()
+    {
+        Destroy(this.gameObject);
+    }
 }

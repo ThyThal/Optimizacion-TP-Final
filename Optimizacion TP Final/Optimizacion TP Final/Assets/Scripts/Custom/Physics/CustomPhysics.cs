@@ -27,6 +27,6 @@ public class CustomPhysics : MonoBehaviourGameplay
 
     public void Update()
     {
-        transform.Translate(_direction * _speed * CustomUpdateManager.Instance.CustomUpdateGameplay.GetDeltaTime);
+        transform.Translate(_direction * _speed * Time.deltaTime);
     }
 }

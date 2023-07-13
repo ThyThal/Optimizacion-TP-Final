@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Index: {x: 0, y: 0}
+  mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   _breakable: 0
   _collider: {fileID: -211112531184967872}
 --- !u!114 &-211112531184967872

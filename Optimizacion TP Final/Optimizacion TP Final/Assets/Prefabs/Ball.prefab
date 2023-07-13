@@ -114,6 +114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 0}
   _direction: {x: 0, y: 0}
+  _speed: 10
 --- !u!114 &5641001518722608651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,3 +128,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 0.5
+  normal: {x: 0, y: 0, z: 0}

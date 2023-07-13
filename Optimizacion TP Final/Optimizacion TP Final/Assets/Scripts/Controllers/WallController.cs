@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(CustomColliderBox))]
 public class WallController : MonoBehaviourGameplay
 {
     [SerializeField] private CustomColliderBox _collider;
+    [SerializeField] private bool _death = false;
 
     public override void ManagedUpdate()
     {
@@ -16,7 +18,15 @@ public class WallController : MonoBehaviourGameplay
             // Check collision with ball.
             if (_collider.CheckCollision(ballController.GetCollider))
             {
-                ballController.Reflect();
+                if (_death)
+                {
+                    ballController.DestroyBall();
+                }
+
+                else
+                {
+                    ballController.Reflect();
+                }
             }
         }
     }

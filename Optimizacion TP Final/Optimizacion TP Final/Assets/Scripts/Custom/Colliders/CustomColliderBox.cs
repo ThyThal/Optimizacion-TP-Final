@@ -8,8 +8,6 @@ public class CustomColliderBox : CustomColliderBase
 
     public override bool CheckCollision(ICollider other)
     {
-        Debug.Log("Collider Box: Checking for Collisions...");
-
         // Box Collisions for Player with Walls.
         if (other is CustomBoxCollider boxCollider)
         {
@@ -24,7 +22,6 @@ public class CustomColliderBox : CustomColliderBase
             if (CheckBoxSphereCollision(this, sphereCollider))
             {
                 // Handle collision between the box collider and the sphere collider
-                Debug.Log("Box-Sphere collision detected!");
                 CalculateCollisionNormal(this, sphereCollider);
                 return true;
             }
@@ -35,6 +32,8 @@ public class CustomColliderBox : CustomColliderBase
 
     private bool CheckBoxSphereCollision(CustomColliderBox boxCollider, CustomColliderSphere sphereCollider)
     {
+        if (boxCollider == null || sphereCollider == null) return false;
+
         Vector3 closestPoint = Vector3.Max(boxCollider.transform.position - _transform.localScale * 0.5f,
                                Vector3.Min(sphereCollider.transform.position, boxCollider.transform.position + _transform.localScale * 0.5f));
 

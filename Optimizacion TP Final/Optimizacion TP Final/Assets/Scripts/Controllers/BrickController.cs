@@ -6,6 +6,7 @@ using UnityEngine;
 public class BrickController : MonoBehaviourGameplay
 {
     public Vector2Int Index;
+    public Mesh mesh;
 
     public event Action<BrickController> BrickDestroyedEvent;
     private List<BrickController> neighborBricks = new List<BrickController>();
@@ -83,5 +84,21 @@ public class BrickController : MonoBehaviourGameplay
     private void OnDisable()
     {
         DestroyBrick();
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (mesh == null)
+            return;
+
+        Gizmos.color = Color.cyan;
+
+        if (_breakable == false)
+            Gizmos.color = Color.red;
+
+        
+        Gizmos.matrix = transform.localToWorldMatrix;
+
+        Gizmos.DrawMesh(mesh, Vector3.zero, Quaternion.identity, Vector3.one * 1);
     }
 }
