@@ -17,7 +17,7 @@ public class BallController : MonoBehaviourGameplay
 
     public void Reflect()
     {
-        _physics.Reflect(_collider.normal);
+        _physics.Reflect(_collider.Normal);
     }
 
     public void DestroyBall()

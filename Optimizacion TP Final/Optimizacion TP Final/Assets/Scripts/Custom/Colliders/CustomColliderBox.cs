@@ -38,7 +38,7 @@ public class CustomColliderBox : CustomColliderBase
 
         float distance = Vector2.Distance(closestPoint, sphereCollider.transform.position);
 
-        return distance <= sphereCollider.radius;
+        return distance <= sphereCollider.Radius;
     }
 
     protected override void DrawGizmo()
@@ -60,7 +60,7 @@ public class CustomColliderBox : CustomColliderBase
             collisionNormal = CalculateBoxSphereCollisionNormal(boxCollider, sphereCollider);
         }
 
-        sphereCollider.normal = collisionNormal;
+        sphereCollider.Normal = collisionNormal;
     }
 
     private Vector2 CalculateBoxSphereCollisionNormal(CustomColliderBox boxCollider, CustomColliderSphere sphereCollider)

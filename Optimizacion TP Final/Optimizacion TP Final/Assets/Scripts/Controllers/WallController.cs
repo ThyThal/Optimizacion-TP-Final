@@ -7,34 +7,33 @@ public class WallController : MonoBehaviourGameplay
 {
     [SerializeField] private CustomColliderBox _collider;
     [SerializeField] private bool _death = false;
-    public Mesh mesh;
+    [SerializeField] private Mesh _mesh;
 
     public override void ManagedUpdate()
     {
-        // Check for colision with all balls.
-        for (int index = 0; index < GameManager.Instance.LevelManager.Balls.Count; index++)
+        // Check for collision with all balls.
+        for (var index = 0; index < GameManager.Instance.LevelManager.Balls.Count; index++)
         {
-            BallController ballController = GameManager.Instance.LevelManager.GetBallController(index);
+            var ballController = GameManager.Instance.LevelManager.GetBallController(index);
 
             // Check collision with ball.
-            if (_collider.CheckCollision(ballController.GetCollider))
+            if (!_collider.CheckCollision(ballController.GetCollider)) continue;
+            
+            if (_death)
             {
-                if (_death)
-                {
-                    ballController.DestroyBall();
-                }
+                ballController.DestroyBall();
+            }
 
-                else
-                {
-                    ballController.Reflect();
-                }
+            else
+            {
+                ballController.Reflect();
             }
         }
     }
-
+    
     private void OnDrawGizmos()
     {
-        if (mesh == null)
+        if (_mesh == null)
             return;
 
         Gizmos.color = Color.yellow;
@@ -45,6 +44,6 @@ public class WallController : MonoBehaviourGameplay
 
         Gizmos.matrix = transform.localToWorldMatrix;
 
-        Gizmos.DrawMesh(mesh, Vector3.zero, Quaternion.identity, Vector3.one * 1);
+        Gizmos.DrawMesh(_mesh, Vector3.zero, Quaternion.identity, Vector3.one * 1);
     }
 }

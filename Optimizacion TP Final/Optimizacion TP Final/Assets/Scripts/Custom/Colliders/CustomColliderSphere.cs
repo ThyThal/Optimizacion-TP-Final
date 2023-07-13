@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class CustomColliderSphere : CustomColliderBase
 {
-    public float radius = 0.5f;
-    public Vector2 normal;
+    [SerializeField] public float Radius = 0.5f;
+    [SerializeField] public Vector2 Normal;
 
     public override bool CheckCollision(ICollider other)
     {
@@ -27,9 +28,9 @@ public class CustomColliderSphere : CustomColliderBase
     protected override void DrawGizmo()
     {
         // Get the center position of the collider
-        Vector3 center = transform.position;
+        var center = transform.position;
 
         // Draw the wire sphere representing the sphere collider
-        Gizmos.DrawWireSphere(center, radius);
+        Gizmos.DrawWireSphere(center, Radius);
     }
 }
