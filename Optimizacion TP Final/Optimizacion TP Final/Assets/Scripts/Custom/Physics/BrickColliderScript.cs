@@ -46,11 +46,33 @@ public class BrickColliderScript : MonoBehaviourGameplay
         {
             if (Mathf.Abs(ballPosition.x - leftEdge) <= tolerance)
             {
-                impactNormal = Vector2.left;
+                if (Mathf.Abs(ballPosition.y - topEdge) <= tolerance)
+                {
+                    impactNormal = new Vector2(-1f, 1f);
+                }
+                else if (Mathf.Abs(ballPosition.y - bottomEdge) <= tolerance)
+                {
+                    impactNormal = new Vector2(-1f, -1f);
+                }
+                else
+                {
+                    impactNormal = Vector2.left;
+                }
             }
             else if (Mathf.Abs(ballPosition.x - rightEdge) <= tolerance)
             {
-                impactNormal = Vector2.right;
+                if (Mathf.Abs(ballPosition.y - topEdge) <= tolerance)
+                {
+                    impactNormal = new Vector2(1f, 1f);
+                }
+                else if (Mathf.Abs(ballPosition.y - bottomEdge) <= tolerance)
+                {
+                    impactNormal = new Vector2(1f, -1f);
+                }
+                else
+                {
+                    impactNormal = Vector2.right;
+                }
             }
             else if (Mathf.Abs(ballPosition.y - topEdge) <= tolerance)
             {
