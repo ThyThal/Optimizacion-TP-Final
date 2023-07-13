@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BrickColliderScript : MonoBehaviourGameplay
+public class CustomBoxCollider : MonoBehaviourGameplay
 {
     public GameObject ball;
     private BallScript ballScript;
