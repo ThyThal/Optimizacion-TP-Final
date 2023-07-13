@@ -5,6 +5,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviourGameplay
 {
     [SerializeField] private CustomColliderBox _collider;
+    [SerializeField] private CustomPhysics _physics;
+    private float _xMovement;
+    private Vector2 _direction;
 
     public override void ManagedUpdate()
     {
@@ -23,5 +26,10 @@ public class PlayerController : MonoBehaviourGameplay
                 ballController.Reflect();
             }
         }
+
+        _direction.x = Input.GetAxis("Horizontal");
+        _physics.SetDirection(_direction);
+
+        _physics.Update();
     }
 }
