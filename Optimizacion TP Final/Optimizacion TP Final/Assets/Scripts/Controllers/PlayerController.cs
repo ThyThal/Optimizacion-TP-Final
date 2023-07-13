@@ -13,10 +13,14 @@ public class PlayerController : MonoBehaviourGameplay
         {
             BallController ballController = GameManager.Instance.LevelManager.GetBallController(index);
 
+            /*
+             * Hay que checkear si toca los costados y si toca perder la pelota.
+             */
+
             // Check collision with ball.
             if (_collider.CheckCollision(ballController.GetCollider))
             {
-                Debug.Log("WALL");
+                ballController.Reflect();
             }
         }
     }

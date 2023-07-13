@@ -18,7 +18,7 @@ public class CustomPhysics : MonoBehaviourGameplay
         _direction = direction;
     }
 
-    public void Reflect(GameObject obj, Vector3 collisionNormal)
+    public void Reflect(Vector3 collisionNormal)
     {
         Vector3 incidentDirection = _direction;
         Vector3 reflectionDirection = Vector3.Reflect(incidentDirection, collisionNormal);

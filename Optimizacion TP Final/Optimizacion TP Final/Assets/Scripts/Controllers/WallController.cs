@@ -16,7 +16,7 @@ public class WallController : MonoBehaviourGameplay
             // Check collision with ball.
             if (_collider.CheckCollision(ballController.GetCollider))
             {
-                Debug.Log("WALL");
+                ballController.Reflect();
             }
         }
     }

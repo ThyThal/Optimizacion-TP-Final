@@ -25,8 +25,7 @@ public class CustomColliderBox : CustomColliderBase
             {
                 // Handle collision between the box collider and the sphere collider
                 Debug.Log("Box-Sphere collision detected!");
-                Vector3 normal = CalculateCollisionNormal(this, sphereCollider);
-                sphereCollider.GetComponent<BallController>().Reflect(normal);
+                CalculateCollisionNormal(this, sphereCollider);
                 return true;
             }
         }
@@ -53,17 +52,17 @@ public class CustomColliderBox : CustomColliderBase
         Gizmos.DrawWireCube(center, transform.localScale);
     }
 
-    private Vector3 CalculateCollisionNormal(CustomColliderBox colliderA, CustomColliderSphere colliderB)
+    private void CalculateCollisionNormal(CustomColliderBox boxCollider, CustomColliderSphere sphereCollider)
     {
         Vector3 collisionNormal = Vector3.zero;
 
-        if (colliderA is CustomColliderBox colliderBox && colliderB is CustomColliderSphere colliderSphere)
+        if (boxCollider is CustomColliderBox colliderBox && sphereCollider is CustomColliderSphere colliderSphere)
         {
             // Calculate the collision normal between two box colliders
-            collisionNormal = CalculateBoxSphereCollisionNormal(colliderA, colliderB);
+            collisionNormal = CalculateBoxSphereCollisionNormal(boxCollider, sphereCollider);
         }
 
-        return collisionNormal;
+        sphereCollider.normal = collisionNormal;
     }
 
     private Vector3 CalculateBoxSphereCollisionNormal(CustomColliderBox boxCollider, CustomColliderSphere sphereCollider)

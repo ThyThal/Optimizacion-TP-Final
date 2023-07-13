@@ -15,8 +15,8 @@ public class BallController : MonoBehaviourGameplay
         _physics.Update();
     }
 
-    public void Reflect(Vector3 normal)
+    public void Reflect()
     {
-        _physics.Reflect(this.gameObject, normal);
+        _physics.Reflect(_collider.normal);
     }
 }

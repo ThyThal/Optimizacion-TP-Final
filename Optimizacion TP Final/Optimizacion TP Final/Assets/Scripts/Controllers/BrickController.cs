@@ -37,6 +37,7 @@ public class BrickController : MonoBehaviourGameplay
             // Check collision with ball.
             if (_collider.CheckCollision(ballController.GetCollider))
             {
+                ballController.Reflect();
                 this.gameObject.SetActive(false);
             }
         }
