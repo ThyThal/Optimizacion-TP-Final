@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface ICollider
 {
-    void CheckCollision(ICollider other);
+    bool CheckCollision(ICollider other);
 }

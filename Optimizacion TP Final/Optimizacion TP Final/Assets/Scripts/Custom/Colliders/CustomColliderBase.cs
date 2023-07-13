@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class CustomColliderBase : MonoBehaviourGameplay, ICollider
 {
     // Common properties and methods for all colliders
-    public abstract void CheckCollision(ICollider other);
+    public abstract bool CheckCollision(ICollider other);
 
     protected abstract void DrawGizmo();
 

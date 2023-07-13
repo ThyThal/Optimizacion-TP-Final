@@ -5,6 +5,18 @@ using UnityEngine;
 public class BallController : MonoBehaviourGameplay
 {
     [SerializeField] private CustomColliderSphere _collider;
+    [SerializeField] private CustomPhysics _physics;
 
     public ICollider GetCollider => _collider;
+
+
+    public override void ManagedUpdate()
+    {
+        _physics.Update();
+    }
+
+    public void Reflect(Vector3 normal)
+    {
+        _physics.Reflect(this.gameObject, normal);
+    }
 }

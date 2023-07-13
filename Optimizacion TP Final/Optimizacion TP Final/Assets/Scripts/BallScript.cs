@@ -19,19 +19,7 @@ public class BallScript : MonoBehaviourGameplay
     // Update is called once per frame
     public override void ManagedUpdate()
     {
-
         transform.Translate(direction * speed * Time.deltaTime);
-
-        if (transform.position.x >= wallPosition || transform.position.x <= -wallPosition)
-        {           
-            direction.x = -direction.x;
-        }
-
-        if (transform.position.y >= ceilingPosition || transform.position.y <= -ceilingPosition)
-        {
-            direction.y = -direction.y;
-        }
-
     }
 
     public void ChangeDirecction(Vector2 impactedWall) 

@@ -9,10 +9,15 @@ public class WallController : MonoBehaviourGameplay
     public override void ManagedUpdate()
     {
         // Check for colision with all balls.
-        for (int index = 0; index < GameManager.Instance.LevelManager.Balls.Count - 1; index++)
+        for (int index = 0; index < GameManager.Instance.LevelManager.Balls.Count; index++)
         {
+            BallController ballController = GameManager.Instance.LevelManager.GetBallController(index);
+
             // Check collision with ball.
-            _collider.CheckCollision(GameManager.Instance.LevelManager.GetCollider(index));
+            if (_collider.CheckCollision(ballController.GetCollider))
+            {
+                Debug.Log("WALL");
+            }
         }
     }
 }

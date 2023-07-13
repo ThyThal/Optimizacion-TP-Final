@@ -6,7 +6,7 @@ public class CustomColliderSphere : CustomColliderBase
 {
     public float radius = 0.5f;
 
-    public override void CheckCollision(ICollider other)
+    public override bool CheckCollision(ICollider other)
     {
         if (other is CustomBoxCollider boxCollider)
         {
@@ -19,6 +19,8 @@ public class CustomColliderSphere : CustomColliderBase
             // Check collision between two sphere colliders
             // Implement collision logic for sphere colliders
         }
+
+        return false;
     }
 
     protected override void DrawGizmo()
