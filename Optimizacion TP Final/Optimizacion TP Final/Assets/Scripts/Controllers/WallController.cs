@@ -7,6 +7,7 @@ public class WallController : MonoBehaviourGameplay
 {
     [SerializeField] private CustomColliderBox _collider;
     [SerializeField] private bool _death = false;
+    public Mesh mesh;
 
     public override void ManagedUpdate()
     {
@@ -29,5 +30,21 @@ public class WallController : MonoBehaviourGameplay
                 }
             }
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (mesh == null)
+            return;
+
+        Gizmos.color = Color.yellow;
+
+        if (_death == true)
+            Gizmos.color = Color.red;
+
+
+        Gizmos.matrix = transform.localToWorldMatrix;
+
+        Gizmos.DrawMesh(mesh, Vector3.zero, Quaternion.identity, Vector3.one * 1);
     }
 }
