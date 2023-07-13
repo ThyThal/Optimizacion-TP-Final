@@ -9,6 +9,12 @@ public class PlayerController : MonoBehaviourGameplay
     private float _xMovement;
     private Vector2 _direction;
 
+    [SerializeField] private WallController _wallLeft;
+    [SerializeField] private WallController _wallRight;
+    [SerializeField] private float _speed = 10f;
+
+    [SerializeField] private bool collision = false;
+
     public override void ManagedUpdate()
     {
         if(Input.GetKeyDown(KeyCode.Space)) GameManager.Instance.LevelManager.StartGame();
@@ -29,11 +35,31 @@ public class PlayerController : MonoBehaviourGameplay
                 ballController.Reflect();
             }
         }
-        
-        _direction.x = Input.GetAxis("Horizontal");
-        _physics.SetDirection(_direction);
 
-        _physics.Update();
+        collision = false;
+        if (_wallRight != null)
+        {
+            if(_collider.CheckCollision(_wallRight.GetCollider)) collision = true;
+        }
+
+        if (_wallLeft != null)
+        {
+            if (_collider.CheckCollision(_wallLeft.GetCollider)) collision = true;
+        }
+
+        _physics.SetSpeed(0);
+        _physics.SetDirection(Vector2.zero);
+
+        if (!collision)
+        {
+            var getInput = Input.GetAxisRaw("Horizontal");
+            if (getInput != 0f)
+            {
+                _physics.SetDirection(Vector2.right);
+                _physics.SetSpeed(getInput * _speed);
+                _physics.UpdatePhysics();
+            }
+        }
     }
 
     public void StopMovement()

@@ -9,6 +9,8 @@ public class WallController : MonoBehaviourGameplay
     [SerializeField] private bool _death = false;
     [SerializeField] private Mesh _mesh;
 
+    public ICollider GetCollider => _collider;
+    
     public override void ManagedUpdate()
     {
         // Check for collision with all balls.

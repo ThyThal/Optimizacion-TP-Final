@@ -20,13 +20,18 @@ public class CustomPhysics : MonoBehaviourGameplay
 
     public void Reflect(Vector2 collisionNormal)
     {
-        Vector2 incidentDirection = _direction;
-        Vector2 reflectionDirection = Vector2.Reflect(incidentDirection, collisionNormal);
+        var reflectionDirection = Vector2.Reflect(_direction, collisionNormal);
         _direction = reflectionDirection;
     }
 
-    public void Update()
+    public void UpdatePhysics()
     {
-        transform.Translate(_direction * _speed * Time.deltaTime);
+
+        var last = CustomUpdateManager.Instance.CustomUpdateGameplay.PreviousUpdate;
+        var current = CustomUpdateManager.Instance.CustomUpdateGameplay.LastUpdate;
+        var delta = current - last;
+        Debug.Log(delta);
+
+        transform.Translate(_direction * _speed * delta);
     }
 }

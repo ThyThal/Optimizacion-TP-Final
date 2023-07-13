@@ -13,7 +13,7 @@ public class BallController : MonoBehaviourGameplay
 
     public override void ManagedUpdate()
     {
-        _physics.Update();
+        _physics.UpdatePhysics();
     }
 
     public void Reflect()
