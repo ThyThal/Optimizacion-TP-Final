@@ -9,17 +9,17 @@ public class CustomColliderBox : CustomColliderBase
     public override bool CheckCollision(ICollider other)
     {
         // Box Collisions for Player with Walls.
-        if (other is CustomBoxCollider boxCollider)
+        if (other is CustomColliderBox boxCollider)
         {
-            // Check collision between two box colliders
-            // Implement collision logic for box colliders
+            Debug.Log("Checking Box Collisions...");
+            return CheckBoxBoxCollision(boxCollider);
         }
 
         // Sphere Collision for Player and Bricks with Ball.
         else if (other is CustomColliderSphere sphereCollider)
         {
             // Check collision between a box collider and a sphere collider
-            if (!CheckBoxSphereCollision(this, sphereCollider)) return false;
+            if (!CheckBoxSphereCollision(sphereCollider)) return false;
             
             // Handle collision between the box collider and the sphere collider
             CalculateCollisionNormal(this, sphereCollider);
@@ -29,12 +29,29 @@ public class CustomColliderBox : CustomColliderBase
         return false;
     }
 
-    private bool CheckBoxSphereCollision(CustomColliderBox boxCollider, CustomColliderSphere sphereCollider)
+    private bool CheckBoxBoxCollision(CustomColliderBox other)
     {
-        if (boxCollider == null || sphereCollider == null) return false;
+        // Calculate the bounds of each box collider
+        Bounds boundsA = new Bounds(_transform.localPosition, _transform.localScale);
+        Bounds boundsB = new Bounds(other.transform.localPosition, other.transform.localScale);
 
-        Vector2 closestPoint = Vector2.Max(boxCollider.transform.position - _transform.localScale * 0.5f,
-                               Vector2.Min(sphereCollider.transform.position, boxCollider.transform.position + _transform.localScale * 0.5f));
+        // Check if the bounds overlap
+        if (boundsA.Intersects(boundsB))
+        {
+            Debug.Log("CAJOTA");
+            return true;
+        }
+
+        Debug.Log("CAJan't");
+        return false;
+    }
+    
+    private bool CheckBoxSphereCollision(CustomColliderSphere sphereCollider)
+    {
+        if (sphereCollider == null) return false;
+
+        Vector2 closestPoint = Vector2.Max(_transform.position - _transform.localScale * 0.5f,
+                               Vector2.Min(sphereCollider.transform.position, _transform.position + _transform.localScale * 0.5f));
 
         float distance = Vector2.Distance(closestPoint, sphereCollider.transform.position);
 

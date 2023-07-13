@@ -1992,7 +1992,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 1033465717}
   _death: 0
-  mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  _mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &1033465717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2438,7 +2438,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 1146682121}
   _death: 0
-  mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  _mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &1146682121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3459,7 +3459,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 1578910358}
   _death: 0
-  mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  _mesh: {fileID: 0}
 --- !u!114 &1578910358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3682,11 +3682,13 @@ MonoBehaviour:
     _targetFPS: 60
     _managedObjects: []
     _lastUpdate: 0
+    _previousTick: 0
   _customUpdateUI:
     _name: UI
     _targetFPS: 30
     _managedObjects: []
     _lastUpdate: 0
+    _previousTick: 0
 --- !u!4 &1676972104
 Transform:
   m_ObjectHideFlags: 0
@@ -3974,7 +3976,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 1778013595}
   _death: 1
-  mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  _mesh: {fileID: 0}
 --- !u!4 &1778013600
 Transform:
   m_ObjectHideFlags: 0
@@ -4531,7 +4533,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 1977271315}
   _death: 0
-  mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  _mesh: {fileID: 0}
 --- !u!114 &1977271315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4869,9 +4871,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4798261555306424185, guid: 2b0a9478da30e1e4dbced8365fdf7d5b, type: 3}
+      propertyPath: _wallLeft
+      value: 
+      objectReference: {fileID: 1033465716}
+    - target: {fileID: 4798261555306424185, guid: 2b0a9478da30e1e4dbced8365fdf7d5b, type: 3}
+      propertyPath: _wallRight
+      value: 
+      objectReference: {fileID: 1146682120}
     - target: {fileID: 4798261555306424188, guid: 2b0a9478da30e1e4dbced8365fdf7d5b, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5592454834050945202, guid: 2b0a9478da30e1e4dbced8365fdf7d5b, type: 3}
+      propertyPath: _speed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5592454834050945202, guid: 2b0a9478da30e1e4dbced8365fdf7d5b, type: 3}
+      propertyPath: _direction.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5592454834050945202, guid: 2b0a9478da30e1e4dbced8365fdf7d5b, type: 3}
+      propertyPath: _direction.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4798261555306424189, guid: 2b0a9478da30e1e4dbced8365fdf7d5b, type: 3}
@@ -4883,6 +4905,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 338164691445510512, guid: a7b2fc12ccd00bf49b5feb56a3b9ea1f, type: 3}
+      propertyPath: _speed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 338164691445510512, guid: a7b2fc12ccd00bf49b5feb56a3b9ea1f, type: 3}
       propertyPath: _collider
       value: 

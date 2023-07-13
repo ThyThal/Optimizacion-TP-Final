@@ -50,6 +50,7 @@ public class CustomUpdateManager : MonoBehaviour
             CustomLogger.Log($"{customUpdate.GetName}: Target FPS={customUpdate.GetTargetFPS} | Tick Interval={customUpdate.GetTickInterval}");
             #endif
 
+
             customUpdate.DoTick();
 
             for (int i = customUpdate.GetManagedObjects.Count - 1; i >= 0; i--)
@@ -72,6 +73,7 @@ public class CustomUpdateManager : MonoBehaviour
         [SerializeField] [Range(1, 60)] private int _targetFPS = 60;
         [SerializeField] private List<ManagedTickObject> _managedObjects;
         [SerializeField] private float _lastUpdate;
+        [SerializeField] private float _previousTick;
 
         /// <summary>
         /// Sets a Target FPS for the Custom Update.
@@ -88,11 +90,6 @@ public class CustomUpdateManager : MonoBehaviour
         public int GetTargetFPS => _targetFPS;
 
         /// <summary>
-        /// Returns Last Update Time.
-        /// </summary>
-        private float GetLastUpdate => _lastUpdate;
-
-        /// <summary>
         /// Returns the Time needed to reach the Target FPS.
         /// </summary>
         public float GetTickInterval => 1 / (float)GetTargetFPS;
@@ -100,7 +97,7 @@ public class CustomUpdateManager : MonoBehaviour
         /// <summary>
         /// Returns Delta Time for Current Object.
         /// </summary>
-        public float GetDeltaTime => Time.time - GetLastUpdate;
+        public float GetDeltaTime => Time.time - _lastUpdate;
 
         /// <summary>
         /// Gets the Name of the Custom Update.
@@ -117,6 +114,7 @@ public class CustomUpdateManager : MonoBehaviour
         /// </summary>
         public void DoTick()
         {
+            _previousTick = _lastUpdate;
             _lastUpdate = Time.time;
         }
 
@@ -138,5 +136,7 @@ public class CustomUpdateManager : MonoBehaviour
             _managedObjects.Remove(managedObject);
         }
 
+        public float LastUpdate => _lastUpdate;
+        public float PreviousUpdate => _previousTick;
     }
 }
