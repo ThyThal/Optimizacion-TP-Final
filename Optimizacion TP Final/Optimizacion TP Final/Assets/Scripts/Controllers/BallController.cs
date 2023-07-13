@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class BallController : MonoBehaviourGameplay
 {
@@ -8,7 +10,6 @@ public class BallController : MonoBehaviourGameplay
     [SerializeField] private CustomPhysics _physics;
 
     public ICollider GetCollider => _collider;
-
 
     public override void ManagedUpdate()
     {
@@ -22,6 +23,13 @@ public class BallController : MonoBehaviourGameplay
 
     public void DestroyBall()
     {
-        Destroy(this.gameObject);
+        GameManager.Instance.LevelManager.CheckDefeat(this);
+        gameObject.SetActive(false);
+    }
+
+    public void StartMovement()
+    {
+        _physics.SetDirection(new Vector2(Random.value, 1));
+        transform.parent = null;
     }
 }

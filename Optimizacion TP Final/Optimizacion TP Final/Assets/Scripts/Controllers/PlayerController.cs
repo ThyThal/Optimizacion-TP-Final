@@ -11,6 +11,9 @@ public class PlayerController : MonoBehaviourGameplay
 
     public override void ManagedUpdate()
     {
+        if(Input.GetKeyDown(KeyCode.Space)) GameManager.Instance.LevelManager.StartGame();
+        
+        if(!GameManager.Instance.LevelManager.isStarted) return;
         // Check for collision with all balls.
         for (var index = 0; index < GameManager.Instance.LevelManager.Balls.Count; index++)
         {
@@ -26,10 +29,15 @@ public class PlayerController : MonoBehaviourGameplay
                 ballController.Reflect();
             }
         }
-
+        
         _direction.x = Input.GetAxis("Horizontal");
         _physics.SetDirection(_direction);
 
         _physics.Update();
+    }
+
+    public void StopMovement()
+    {
+        _physics.SetDirection(Vector2.zero);
     }
 }

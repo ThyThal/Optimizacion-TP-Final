@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _collider: {fileID: 5641001518722608651}
-  _physics: {fileID: 0}
+  _physics: {fileID: 338164691445510512}
 --- !u!114 &338164691445510512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e9488dc0ba6b6149bbb212e37d9b460, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _collider: {fileID: 0}
+  _collider: {fileID: 5641001518722608651}
   _direction: {x: 0, y: 0}
   _speed: 10
 --- !u!114 &5641001518722608651
@@ -127,5 +127,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8119c006738cd334cbbd30fb42c3bc11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 0.5
-  normal: {x: 0, y: 0, z: 0}
+  Radius: 0.5
+  Normal: {x: 0, y: 0}
