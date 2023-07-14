@@ -44,6 +44,8 @@ public class CustomUpdateManager : MonoBehaviour
 
     private void PerformCustomUpdate(CustomUpdate customUpdate)
     {
+        if (customUpdate.GetManagedObjects.Count <= 0) return;
+
         if (customUpdate.GetDeltaTime >= customUpdate.GetTickInterval)
         {
             #if ENABLE_LOGS
