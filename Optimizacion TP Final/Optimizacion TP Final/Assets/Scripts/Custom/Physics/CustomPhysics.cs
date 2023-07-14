@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class CustomPhysics
 {
     [SerializeField] private Transform _transform;
     [SerializeField] private CustomColliderBase _collider;
-    [SerializeField] private Vector2 _direction = Vector2.up;
+    [SerializeField] private Vector2 _direction = Vector2.zero;
     [SerializeField] private float _speed = 1;
 
     public CustomPhysics(Transform transform, CustomColliderBase collider)

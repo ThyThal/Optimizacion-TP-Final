@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
+[System.Serializable]
 public class CustomColliderSphere : CustomColliderBase
 {
     [SerializeField] public Transform _transform;
