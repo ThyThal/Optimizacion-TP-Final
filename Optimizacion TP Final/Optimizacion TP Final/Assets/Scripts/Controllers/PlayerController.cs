@@ -15,6 +15,13 @@ public class PlayerController : MonoBehaviourGameplay
 
     [SerializeField] private bool collision = false;
 
+    private void Awake()
+    {
+        base.Awake();
+        _collider = new CustomColliderBox(transform);
+        _physics = new CustomPhysics(transform, _collider);
+    }
+
     public override void ManagedUpdate()
     {
         if(Input.GetKeyDown(KeyCode.Space)) GameManager.Instance.LevelManager.StartGame();

@@ -5,12 +5,18 @@ using UnityEngine.Serialization;
 
 public class CustomColliderSphere : CustomColliderBase
 {
+    [SerializeField] public Transform _transform;
     [SerializeField] public float Radius = 0.5f;
-    [SerializeField] public Vector2 Normal;
+    [SerializeField] public Vector2 CollisionNormal;
+
+    public CustomColliderSphere(Transform transform)
+    {
+        _transform = transform;
+    }
 
     public override bool CheckCollision(ICollider other)
     {
-        if (other is CustomBoxCollider boxCollider)
+        if (other is CustomColliderBox boxCollider)
         {
             // Check collision between a sphere collider and a box collider
             // Implement collision logic between sphere and box colliders
@@ -28,7 +34,7 @@ public class CustomColliderSphere : CustomColliderBase
     protected override void DrawGizmo()
     {
         // Get the center position of the collider
-        var center = transform.position;
+        var center = _transform.position;
 
         // Draw the wire sphere representing the sphere collider
         Gizmos.DrawWireSphere(center, Radius);

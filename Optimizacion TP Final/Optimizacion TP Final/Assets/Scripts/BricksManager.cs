@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BricksManager : MonoBehaviour
+public class BricksManager : MonoBehaviourGameplay
 {
     [SerializeField] private List<BrickController> brickControllers;
     [SerializeField] private Dictionary<Vector2Int, BrickController> _bricksMatrix = new Dictionary<Vector2Int, BrickController>();

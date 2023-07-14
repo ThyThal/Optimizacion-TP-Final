@@ -10,7 +10,13 @@ public class WallController : MonoBehaviourGameplay
     [SerializeField] private Mesh _mesh;
 
     public ICollider GetCollider => _collider;
-    
+
+    private void Awake()
+    {
+        base.Awake();
+        _collider = new CustomColliderBox(transform);
+    }
+
     public override void ManagedUpdate()
     {
         // Check for collision with all balls.

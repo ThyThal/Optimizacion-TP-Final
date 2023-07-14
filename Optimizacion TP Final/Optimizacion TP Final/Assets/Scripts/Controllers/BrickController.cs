@@ -17,6 +17,12 @@ public class BrickController : MonoBehaviourGameplay
 
     public void SetBreakable() { _breakable = true; }
 
+    private void Awake()
+    {
+        base.Awake();
+        _collider = new CustomColliderBox(transform);
+    }
+
 
     public override void ManagedUpdate()
     {

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class CustomColliderBase : MonoBehaviourGameplay, ICollider
+public abstract class CustomColliderBase : ICollider
 {
     // Common properties and methods for all colliders
     public abstract bool CheckCollision(ICollider other);

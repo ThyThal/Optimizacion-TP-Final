@@ -6,92 +6,97 @@ public class CustomColliderBox : CustomColliderBase
 {
     [SerializeField] private Transform _transform;
 
+    // Cache other collider.
+    private ICollider _other;
+
+    public CustomColliderBox(Transform transform)
+    {
+        _transform = transform;
+    }
+
+    // Check Collision with Others.
     public override bool CheckCollision(ICollider other)
     {
-        // Box Collisions for Player with Walls.
-        if (other is CustomColliderBox boxCollider)
+        _other = other;
+
+
+        if (_other is CustomColliderBox otherColliderBox)
         {
-            Debug.Log("Checking Box Collisions...");
-            return CheckBoxBoxCollision(boxCollider);
+            if (CheckCollisionWithBox(otherColliderBox))
+            {
+                ResolveCollision(otherColliderBox);
+                return true;
+            }
         }
 
-        // Sphere Collision for Player and Bricks with Ball.
-        else if (other is CustomColliderSphere sphereCollider)
+        else if (_other is CustomColliderSphere otherColliderSphere)
         {
-            // Check collision between a box collider and a sphere collider
-            if (!CheckBoxSphereCollision(sphereCollider)) return false;
-            
-            // Handle collision between the box collider and the sphere collider
-            CalculateCollisionNormal(this, sphereCollider);
+            // Check if is not colliding with the sphere, and return.
+            if (!CheckCollisionWithSphere(otherColliderSphere)) return false;
+
+            // If is colliding with sphere continue.
+            CalculateCollisionNormal(otherColliderSphere);
+            ResolveCollision(otherColliderSphere);
             return true;
         }
 
         return false;
     }
 
-    private bool CheckBoxBoxCollision(CustomColliderBox other)
+    /// <summary>
+    /// Check if Box Collider is Overlapping.
+    /// </summary>
+    /// <param name="otherColliderBox">Collider of the other object</param>
+    /// <returns></returns>
+    private bool CheckCollisionWithBox(CustomColliderBox otherColliderBox)
     {
         // Calculate the bounds of each box collider
         Bounds boundsA = new Bounds(_transform.localPosition, _transform.localScale);
-        Bounds boundsB = new Bounds(other.transform.localPosition, other.transform.localScale);
+        Bounds boundsB = new Bounds(otherColliderBox._transform.localPosition, otherColliderBox._transform.localScale);
 
         // Check if the bounds overlap
         if (boundsA.Intersects(boundsB))
         {
-            Debug.Log("CAJOTA");
             return true;
         }
 
-        Debug.Log("CAJan't");
         return false;
     }
-    
-    private bool CheckBoxSphereCollision(CustomColliderSphere sphereCollider)
+
+    /// <summary>
+    /// Check if Sphere Colliders is Overlapping.
+    /// </summary>
+    /// <param name="sphereCollider">Collider of the other object</param>
+    /// <returns></returns>
+    private bool CheckCollisionWithSphere(CustomColliderSphere sphereCollider)
     {
         if (sphereCollider == null) return false;
 
         Vector2 closestPoint = Vector2.Max(_transform.position - _transform.localScale * 0.5f,
-                               Vector2.Min(sphereCollider.transform.position, _transform.position + _transform.localScale * 0.5f));
+                               Vector2.Min(sphereCollider._transform.position, _transform.position + _transform.localScale * 0.5f));
 
-        float distance = Vector2.Distance(closestPoint, sphereCollider.transform.position);
+        float distance = Vector2.Distance(closestPoint, sphereCollider._transform.position);
 
         return distance <= sphereCollider.Radius;
     }
 
-    protected override void DrawGizmo()
+    /// <summary>
+    /// Calculate the normal for Sphere Reflection.
+    /// </summary>
+    private void CalculateCollisionNormal(CustomColliderSphere sphereCollider)
     {
-        // Get the center position of the collider
-        Vector2 center = this.transform.position;
-
-        // Draw the wire cube representing the box collider
-        Gizmos.DrawWireCube(center, transform.localScale);
+        sphereCollider.CollisionNormal = CalculateBoxSphereCollisionNormal(this, sphereCollider);
     }
 
-    private void CalculateCollisionNormal(CustomColliderBox boxCollider, CustomColliderSphere sphereCollider)
-    {
-        Vector2 collisionNormal = Vector2.zero;
-
-        if (boxCollider is CustomColliderBox colliderBox && sphereCollider is CustomColliderSphere colliderSphere)
-        {
-            // Calculate the collision normal between two box colliders
-            collisionNormal = CalculateBoxSphereCollisionNormal(boxCollider, sphereCollider);
-        }
-
-        sphereCollider.Normal = collisionNormal;
-    }
-
+    /// <summary>
+    /// Calculates the normal between a Box and a Sphere.
+    /// </summary>
+    /// <returns>Normal of the Collision Point</returns>
     private Vector2 CalculateBoxSphereCollisionNormal(CustomColliderBox boxCollider, CustomColliderSphere sphereCollider)
     {
-        // Calculate the center of the sphere
-        Vector2 sphereCenter = sphereCollider.transform.position;
-
-        // Calculate the closest point on the box collider's surface to the sphere's center
+        Vector2 sphereCenter = sphereCollider._transform.position;
         Vector2 closestPoint = GetClosestPointOnBox(boxCollider, sphereCenter);
-
-        // Calculate the collision normal by subtracting the closest point from the sphere's center
         Vector2 collisionNormal = sphereCenter - closestPoint;
-
-        // Normalize the collision normal
         collisionNormal.Normalize();
 
         return collisionNormal;
@@ -99,25 +104,50 @@ public class CustomColliderBox : CustomColliderBase
 
     private Vector2 GetClosestPointOnBox(CustomColliderBox boxCollider, Vector2 point)
     {
-        // Calculate the center and size of the box collider
-        Vector2 boxCenter = boxCollider.transform.position;
+        Vector2 boxCenter = boxCollider._transform.position;
         Vector2 boxSize = _transform.localScale;
-
-        // Calculate the half extents of the box collider
         Vector2 halfExtents = boxSize * 0.5f;
-
-        // Calculate the direction from the box's center to the point
         Vector2 direction = point - boxCenter;
-
-        // Clamp the direction vector to the box's extents
-        Vector2 clampedDirection = new Vector3(
+        Vector2 clampedDirection = new Vector2(
             Mathf.Clamp(direction.x, -halfExtents.x, halfExtents.x),
             Mathf.Clamp(direction.y, -halfExtents.y, halfExtents.y)
         );
 
-        // Calculate the closest point on the box's surface
         Vector2 closestPoint = boxCenter + clampedDirection;
 
         return closestPoint;
+    }
+
+    private void ResolveCollision(CustomColliderBox otherColliderBox)
+    {
+        Vector2 collisionNormal = _transform.position - otherColliderBox._transform.position;
+        float penetrationDepth = Mathf.Abs(_transform.position.x - otherColliderBox._transform.position.x) - (_transform.localScale.x + otherColliderBox._transform.localScale.x) / 2;
+
+        float separationDistance = penetrationDepth + 0.001f;
+        Vector3 correction = new Vector3(separationDistance * collisionNormal.x, 0, 0);
+
+        _transform.position -= correction;
+        //otherColliderBox._transform.position -= correction;
+    }
+
+    private void ResolveCollision(CustomColliderSphere otherColliderSphere)
+    {
+        Vector2 collisionNormal = _transform.position - otherColliderSphere._transform.position;
+        float penetrationDepth = Mathf.Abs(_transform.position.x - otherColliderSphere._transform.position.x) - (_transform.localScale.x + otherColliderSphere.Radius) / 2;
+
+        float separationDistance = penetrationDepth + 0.001f;
+        Vector3 correction = new Vector3(separationDistance * collisionNormal.x, separationDistance * collisionNormal.y, 0);
+
+        //_transform.position += correction;
+        //otherColliderSphere._transform.position -= correction;
+    }
+
+    protected override void DrawGizmo()
+    {
+        // Get the center position of the collider
+        Vector2 center = this._transform.position;
+
+        // Draw the wire cube representing the box collider
+        Gizmos.DrawWireCube(center, _transform.localScale);
     }
 }

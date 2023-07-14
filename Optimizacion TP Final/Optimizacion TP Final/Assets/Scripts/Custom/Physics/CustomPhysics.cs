@@ -2,11 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CustomPhysics : MonoBehaviourGameplay
+public class CustomPhysics
 {
+    [SerializeField] private Transform _transform;
     [SerializeField] private CustomColliderBase _collider;
     [SerializeField] private Vector2 _direction = Vector2.up;
     [SerializeField] private float _speed = 1;
+
+    public CustomPhysics(Transform transform, CustomColliderBase collider)
+    {
+        _transform = transform;
+        _collider = collider;
+    }
 
     public void SetSpeed(float speed)
     {
@@ -30,8 +37,7 @@ public class CustomPhysics : MonoBehaviourGameplay
         var last = CustomUpdateManager.Instance.CustomUpdateGameplay.PreviousUpdate;
         var current = CustomUpdateManager.Instance.CustomUpdateGameplay.LastUpdate;
         var delta = current - last;
-        Debug.Log(delta);
 
-        transform.Translate(_direction * _speed * delta);
+        _transform.Translate(_direction * _speed * delta);
     }
 }

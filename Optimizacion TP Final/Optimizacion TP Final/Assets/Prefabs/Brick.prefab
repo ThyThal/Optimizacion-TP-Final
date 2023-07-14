@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 560721400187709610}
   - component: {fileID: 560721400187709611}
   - component: {fileID: -6798617772600086125}
-  - component: {fileID: -211112531184967872}
   m_Layer: 0
   m_Name: Brick
   m_TagString: Untagged
@@ -100,17 +99,3 @@ MonoBehaviour:
   Index: {x: 0, y: 0}
   mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   _breakable: 0
-  _collider: {fileID: -211112531184967872}
---- !u!114 &-211112531184967872
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 560721400187709614}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d07ab74304c421544aeeb2cef77c51b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _transform: {fileID: 560721400187709613}

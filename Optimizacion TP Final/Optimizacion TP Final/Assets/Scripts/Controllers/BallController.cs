@@ -9,7 +9,17 @@ public class BallController : MonoBehaviourGameplay
     [SerializeField] private CustomColliderSphere _collider;
     [SerializeField] private CustomPhysics _physics;
 
+    [SerializeField] private float speed = 10f;
+
     public ICollider GetCollider => _collider;
+
+    private void Awake()
+    {
+        base.Awake();
+        _collider = new CustomColliderSphere(transform);
+        _physics = new CustomPhysics(transform, _collider);
+        _physics.SetSpeed(speed);
+    }
 
     public override void ManagedUpdate()
     {
@@ -18,7 +28,7 @@ public class BallController : MonoBehaviourGameplay
 
     public void Reflect()
     {
-        _physics.Reflect(_collider.Normal);
+        _physics.Reflect(_collider.CollisionNormal);
     }
 
     public void DestroyBall()
