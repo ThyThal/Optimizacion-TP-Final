@@ -98,6 +98,7 @@ public class BricksManager : MonoBehaviourGameplay
     private void CreatePoweredBricks()
     {
         List<BrickController> unpowered = new List<BrickController>(brickControllers);
+        _powers = Mathf.Clamp(_powers, 0, brickControllers.Count);
 
         for (int i = 0; i < _powers; i++)
         {
