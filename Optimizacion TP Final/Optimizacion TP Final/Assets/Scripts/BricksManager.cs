@@ -8,6 +8,8 @@ public class BricksManager : MonoBehaviourGameplay
     [SerializeField] private Dictionary<Vector2Int, BrickController> _bricksMatrix = new Dictionary<Vector2Int, BrickController>();
     [SerializeField] private Vector2Int _gridSize;
 
+    [SerializeField] private int _powers = 3;
+
     private void Awake()
     {
         _bricksMatrix = new Dictionary<Vector2Int, BrickController>();
@@ -48,6 +50,8 @@ public class BricksManager : MonoBehaviourGameplay
         {
             GetNeighbours(brick);
         }
+
+        CreatePoweredBricks();
     }
 
     // Check if the brick is on the border of the grid.
@@ -88,6 +92,18 @@ public class BricksManager : MonoBehaviourGameplay
         if (_bricksMatrix.TryGetValue(downIndex, out down))
         {
             brick.AddNeighborBrick(down);
+        }
+    }
+
+    private void CreatePoweredBricks()
+    {
+        List<BrickController> unpowered = new List<BrickController>(brickControllers);
+
+        for (int i = 0; i < _powers; i++)
+        {
+            var index = Random.Range(0, unpowered.Count);
+            unpowered[index].SetPowered();
+            unpowered.RemoveAt(index);
         }
     }
 }

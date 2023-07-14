@@ -5,24 +5,42 @@ using UnityEngine;
 
 public class BrickController : MonoBehaviourGameplay
 {
-    public Vector2Int Index;
-    public Mesh mesh;
+    private CustomColliderBox _collider;
+
+    [SerializeField] private Vector2Int _index;
+    [SerializeField] private bool _breakable = false;
+    [SerializeField] private Mesh mesh;
+
+    [Header("Powered Components")]
+    [SerializeField] private MeshRenderer _meshRenderer;
+    [SerializeField] private bool _powered = false;
+    [SerializeField] private Material _powerMaterial;
 
     public event Action<BrickController> BrickDestroyedEvent;
     private List<BrickController> neighborBricks = new List<BrickController>();
-    [SerializeField] private bool _breakable = false;
 
-    [SerializeField] private CustomColliderBox _collider;
 
+
+
+    public Vector2Int Index {
+        get {return _index;}
+        set { _index = value;}}
+
+    public bool IsPowered => _powered;
 
     public void SetBreakable() { _breakable = true; }
 
-    private void Awake()
+    public override void Awake()
     {
         base.Awake();
         _collider = new CustomColliderBox(transform);
     }
 
+    public void SetPowered()
+    {
+        _powered = true;
+        _meshRenderer.material = _powerMaterial;
+    }
 
     public override void ManagedUpdate()
     {

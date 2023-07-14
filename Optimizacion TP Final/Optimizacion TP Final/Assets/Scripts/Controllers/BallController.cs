@@ -13,7 +13,7 @@ public class BallController : MonoBehaviourGameplay
 
     public ICollider GetCollider => _collider;
 
-    private void Awake()
+    public override void Awake()
     {
         base.Awake();
         _collider = new CustomColliderSphere(transform);

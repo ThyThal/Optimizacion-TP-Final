@@ -96,6 +96,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bce7c31d4ff817e45a03eb689b6cb8d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Index: {x: 0, y: 0}
-  mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  _index: {x: 0, y: 0}
   _breakable: 0
+  mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  _meshRenderer: {fileID: 560721400187709611}
+  _powered: 0
+  _powerMaterial: {fileID: 2100000, guid: fb75dde5c7f891a41a98d66442deab24, type: 2}
