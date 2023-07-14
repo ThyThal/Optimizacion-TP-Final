@@ -13,5 +13,25 @@ public class PowerController : MonoBehaviourGameplay
         _collider = new CustomColliderBox(transform);
         _physics = new CustomPhysics(transform, _collider);
         _physics.SetDirection(Vector2.down);
+        _physics.SetSpeed(5);
+    }
+
+    public override void ManagedUpdate()
+    {
+        if (_collider.CheckCollision(GameManager.Instance.LevelManager.GetPlayer.GetCollider))
+        {
+            Destroy(this.gameObject);
+            GameManager.Instance.LevelManager.DoPower();
+        }
+
+        else if (_collider.CheckCollision(GameManager.Instance.LevelManager.GetDeathCollider))
+        {
+            Destroy(this.gameObject);
+        }
+
+        else
+        {
+            _physics.UpdatePhysics();
+        }
     }
 }

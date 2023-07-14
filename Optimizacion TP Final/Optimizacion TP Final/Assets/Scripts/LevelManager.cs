@@ -10,10 +10,13 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private Transform ballSpawnPoint;
     [SerializeField] private PlayerController player;
     [SerializeField] private List<BallController> _balls;
+    [SerializeField] private CustomColliderBox _colliderDeath;
     public bool isStarted;
     private float _lives;
 
+    public CustomColliderBox GetDeathCollider => _colliderDeath;
     public List<BallController> Balls => _balls;
+    public PlayerController GetPlayer => player;
     public BallController GetBallController(int index) => _balls[index];
 
     private void Start()
@@ -63,5 +66,10 @@ public class LevelManager : MonoBehaviour
     public void LoseGame()
     {
         // Pantalla de derrota
+    }
+
+    public void DoPower()
+    {
+        CustomLogger.Log("[TODO]: Spawn Extra Balls.");
     }
 }

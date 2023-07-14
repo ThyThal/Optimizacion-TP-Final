@@ -102,3 +102,4 @@ MonoBehaviour:
   _meshRenderer: {fileID: 560721400187709611}
   _powered: 0
   _powerMaterial: {fileID: 2100000, guid: fb75dde5c7f891a41a98d66442deab24, type: 2}
+  _powerObject: {fileID: 8081528838634602619, guid: 2d5def59a61e9df49b73e2115a2cabb5, type: 3}

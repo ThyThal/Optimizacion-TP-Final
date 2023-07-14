@@ -15,6 +15,7 @@ public class BrickController : MonoBehaviourGameplay
     [SerializeField] private MeshRenderer _meshRenderer;
     [SerializeField] private bool _powered = false;
     [SerializeField] private Material _powerMaterial;
+    [SerializeField] private GameObject _powerObject;
 
     public event Action<BrickController> BrickDestroyedEvent;
     private List<BrickController> neighborBricks = new List<BrickController>();
@@ -63,7 +64,7 @@ public class BrickController : MonoBehaviourGameplay
             if (!_collider.CheckCollision(ballController.GetCollider)) continue;
             
             ballController.Reflect();
-            this.gameObject.SetActive(false);
+            DestroyBrick();
         }
     }
 
@@ -96,6 +97,9 @@ public class BrickController : MonoBehaviourGameplay
 
         // Invoke the BrickDestroyedEvent
         BrickDestroyedEvent?.Invoke(this);
+
+        if (IsPowered) { SpawnPower(); }
+        gameObject.SetActive(false);
     }
 
     // Method called when a neighbor brick is destroyed
@@ -104,9 +108,10 @@ public class BrickController : MonoBehaviourGameplay
         _breakable = true;
     }
 
-    private void OnDisable()
+    private void SpawnPower()
     {
-        DestroyBrick();
+        var power = Instantiate(_powerObject);
+        power.transform.position = transform.position;
     }
 
     private void OnDrawGizmos()

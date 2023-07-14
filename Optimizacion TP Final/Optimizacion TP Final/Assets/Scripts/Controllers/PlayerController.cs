@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviourGameplay
 
     [SerializeField] private bool collision = false;
 
+    public CustomColliderBox GetCollider => _collider;
+
     public override void Awake()
     {
         base.Awake();

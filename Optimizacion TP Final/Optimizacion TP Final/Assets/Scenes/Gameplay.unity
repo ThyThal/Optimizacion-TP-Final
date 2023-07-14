@@ -1967,6 +1967,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95aa6e2775d3a2b4da7d882acdd936e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _collider:
+    _transform: {fileID: 0}
   _death: 0
   _mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1001 &1054125874
@@ -2398,6 +2400,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95aa6e2775d3a2b4da7d882acdd936e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _collider:
+    _transform: {fileID: 0}
   _death: 0
   _mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &1162392002 stripped
@@ -3124,6 +3128,7 @@ MonoBehaviour:
   - {fileID: 1373699079}
   - {fileID: 2067304234}
   _gridSize: {x: 7, y: 7}
+  _powers: 3
 --- !u!114 &1414319784 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: -6798617772600086125, guid: 2eb7b05471d6a5a45a7f0e38dc0421ef, type: 3}
@@ -3409,6 +3414,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95aa6e2775d3a2b4da7d882acdd936e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _collider:
+    _transform: {fileID: 0}
   _death: 0
   _mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1001 &1587308911
@@ -3880,7 +3887,7 @@ GameObject:
   - component: {fileID: 1778013600}
   - component: {fileID: 1778013596}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Death Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3898,6 +3905,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95aa6e2775d3a2b4da7d882acdd936e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _collider:
+    _transform: {fileID: 0}
   _death: 1
   _mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!4 &1778013600
@@ -4453,6 +4462,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95aa6e2775d3a2b4da7d882acdd936e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _collider:
+    _transform: {fileID: 0}
   _death: 0
   _mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1001 &2014584647
@@ -4606,6 +4617,8 @@ MonoBehaviour:
   ballSpawnPoint: {fileID: 1306442976}
   player: {fileID: 571300191}
   _balls: []
+  _colliderDeath:
+    _transform: {fileID: 1778013600}
   isStarted: 0
 --- !u!4 &2028747228
 Transform:
@@ -4790,6 +4803,10 @@ PrefabInstance:
       propertyPath: _wallRight
       value: 
       objectReference: {fileID: 1146682120}
+    - target: {fileID: 4798261555306424186, guid: 2b0a9478da30e1e4dbced8365fdf7d5b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2ef4a01ae8da52c408afea86bcc80ca8, type: 2}
     - target: {fileID: 4798261555306424188, guid: 2b0a9478da30e1e4dbced8365fdf7d5b, type: 3}
       propertyPath: m_Name
       value: Player
