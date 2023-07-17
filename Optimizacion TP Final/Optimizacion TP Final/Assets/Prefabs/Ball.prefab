@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5641001518722608649}
   - component: {fileID: 5641001518722608646}
   - component: {fileID: 4728192159830463794}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,3 +96,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36a96f9398eff8549abdd19b5fa609af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _collider:
+    _transform: {fileID: 0}
+    Radius: 0
+    CollisionNormal: {x: 0, y: 0}
+  _physics:
+    _transform: {fileID: 0}
+    _direction: {x: 0, y: 0}
+    _speed: 0
+  _playerBall: 0
+  _speed: 10

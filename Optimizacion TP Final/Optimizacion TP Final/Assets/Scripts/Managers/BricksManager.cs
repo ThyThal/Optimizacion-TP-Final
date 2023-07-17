@@ -10,6 +10,8 @@ public class BricksManager : MonoBehaviourGameplay
     [SerializeField] private int _powers = 3;
     public ObjectPool objectPool;
 
+    public int TotalBricks => brickControllers.Count;
+
     private void Awake()
     {
         objectPool.InitializePool();

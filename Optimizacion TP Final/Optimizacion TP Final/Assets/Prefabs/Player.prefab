@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 244997519376147882}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BallSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 4798261555306424187}
   - component: {fileID: 4798261555306424186}
   - component: {fileID: 4798261555306424185}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,7 +134,10 @@ MonoBehaviour:
     _transform: {fileID: 0}
     _direction: {x: 0, y: 0}
     _speed: 0
+  _shootingPoint: {fileID: 244997519376147882}
+  _currentBall: {fileID: 0}
+  _waitingForShoot: 0
   _wallLeft: {fileID: 0}
   _wallRight: {fileID: 0}
   _speed: 10
-  collision: 0
+  wallCollisions: 0

@@ -20,9 +20,6 @@ public class BrickController : MonoBehaviourGameplay
     public event Action<BrickController> BrickDestroyedEvent;
     private List<BrickController> neighborBricks = new List<BrickController>();
 
-
-
-
     public Vector2Int Index {
         get {return _index;}
         set { _index = value;}}
@@ -89,6 +86,7 @@ public class BrickController : MonoBehaviourGameplay
     {
         // Perform any actions needed when the brick is destroyed
         _breakable = false;
+        GameManager.Instance.LevelManager.DestroyedBrick();
 
         // Notify the neighboring bricks
         foreach (var neighbor in neighborBricks)

@@ -6,11 +6,12 @@ TagManager:
   tags:
   - Ball
   - LevelManager
+  - UI
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - GAME
   - Water
   - UI
   - 
@@ -42,4 +43,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UI
+    uniqueID: 2662547613
+    locked: 0
+  - name: GAME
+    uniqueID: 583342173
     locked: 0

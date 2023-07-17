@@ -45,7 +45,7 @@ public class MenuScript : MonoBehaviourUI
 
     public void LoadSceneLevel()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("Gameplay");
     }
 
 }

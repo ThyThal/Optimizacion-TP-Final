@@ -8,9 +8,11 @@ public class BallController : MonoBehaviourGameplay
 {
     [SerializeField] private CustomColliderSphere _collider;
     [SerializeField] private CustomPhysics _physics;
+    [SerializeField] private bool _playerBall = false;
 
-    [SerializeField] private float speed = 10f;
+    [SerializeField] private float _speed = 10f;
 
+    public bool IsPlayerBall => _playerBall;
     public ICollider GetCollider => _collider;
 
     public override void Awake()
@@ -18,8 +20,7 @@ public class BallController : MonoBehaviourGameplay
         base.Awake();
         _collider = new CustomColliderSphere(transform);
         _physics = new CustomPhysics(transform, _collider);
-        _physics.SetSpeed(speed);
-        StartMovement();
+        _physics.SetSpeed(_speed);
     }
 
     public override void ManagedUpdate()
@@ -40,7 +41,21 @@ public class BallController : MonoBehaviourGameplay
 
     public void StartMovement()
     {
-        _physics.SetDirection(new Vector2(Random.value, 1));
+        _physics.SetDirection(new Vector2(Random.Range(-1f, 1f), 1));
         transform.parent = null;
+    }
+
+    public void InitializeBall(bool isPlayer, float speed, Transform spawnPoint)
+    {
+        transform.parent = spawnPoint;
+        transform.localPosition = Vector3.zero;
+        _physics.SetDirection(Vector2.zero);
+        _playerBall = isPlayer;
+        _speed = speed;
+
+        if (isPlayer == false)
+        {
+            StartMovement();
+        }
     }
 }

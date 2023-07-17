@@ -22,7 +22,11 @@ public class GameManager : MonoBehaviourGameplay
 
     [SerializeField] private LevelManager _levelManager;
 
-    public LevelManager LevelManager => _levelManager;
+    public LevelManager LevelManager
+    {
+        get { return _levelManager; }
+        set { _levelManager = value; }
+    }
 
     public void SetLevelManager(LevelManager levelManager)
     {

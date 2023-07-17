@@ -4,17 +4,24 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviourGameplay
 {
+    [Header("Components")]
     [SerializeField] private CustomColliderBox _collider;
     [SerializeField] private CustomPhysics _physics;
-    private float _xMovement;
-    private Vector2 _direction;
+
+    [Header("Ball")]
+    [SerializeField] private Transform _shootingPoint;
+    [SerializeField] private BallController _currentBall;
+    [SerializeField] private bool _waitingForShoot = false;
+
 
     [SerializeField] private WallController _wallLeft;
     [SerializeField] private WallController _wallRight;
     [SerializeField] private float _speed = 10f;
 
-    [SerializeField] private bool collision = false;
+    [SerializeField] private bool wallCollisions = false;
 
+
+    public bool WaitingForShoot => _waitingForShoot;
     public CustomColliderBox GetCollider => _collider;
 
     public override void Awake()
@@ -24,11 +31,21 @@ public class PlayerController : MonoBehaviourGameplay
         _physics = new CustomPhysics(transform, _collider);
     }
 
-    public override void ManagedUpdate()
+    private void Start()
     {
-        if(Input.GetKey(KeyCode.Space)) GameManager.Instance.LevelManager.StartGame();
-        
-        if(!GameManager.Instance.LevelManager.isStarted) return;
+        SpawnNewBall();
+    }
+
+    public override void ManagedUpdate()
+    {                
+        CheckInputs();
+        CheckCollisions();
+    }
+
+    private void CheckCollisions()
+    {
+        wallCollisions = false;
+
         // Check for collision with all balls.
         for (var index = 0; index < GameManager.Instance.LevelManager.Balls.Count; index++)
         {
@@ -45,21 +62,31 @@ public class PlayerController : MonoBehaviourGameplay
             }
         }
 
-        collision = false;
         if (_wallRight != null)
         {
-            if(_collider.CheckCollision(_wallRight.GetCollider)) collision = true;
+            if (_collider.CheckCollision(_wallRight.GetCollider)) wallCollisions = true;
         }
 
         if (_wallLeft != null)
         {
-            if (_collider.CheckCollision(_wallLeft.GetCollider)) collision = true;
+            if (_collider.CheckCollision(_wallLeft.GetCollider)) wallCollisions = true;
+        }
+    }
+
+    private void CheckInputs()
+    {
+        if (_waitingForShoot)
+        {
+            if (Input.GetKey(KeyCode.Space))
+            {
+                Shoot();
+            }
         }
 
         _physics.SetSpeed(0);
         _physics.SetDirection(Vector2.zero);
 
-        if (!collision)
+        if (!wallCollisions)
         {
             var getInput = Input.GetAxisRaw("Horizontal");
             if (getInput != 0f)
@@ -74,5 +101,18 @@ public class PlayerController : MonoBehaviourGameplay
     public void StopMovement()
     {
         _physics.SetDirection(Vector2.zero);
+    }
+
+    public void SpawnNewBall()
+    {
+        _currentBall = GameManager.Instance.LevelManager.GetPlayerBall();
+        _waitingForShoot = true;
+    }
+
+    private void Shoot()
+    {
+        _waitingForShoot = false;
+        _currentBall.StartMovement();
+        _shootingPoint.DetachChildren();
     }
 }
