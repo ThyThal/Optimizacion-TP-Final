@@ -27,7 +27,7 @@ SpriteAtlas:
       blockOffset: 1
       allowAlphaSplitting: 0
       enableRotation: 1
-      enableTightPacking: 1
+      enableTightPacking: 0
       enableAlphaDilation: 0
     secondaryTextureSettings: {}
     variantMultiplier: 1
@@ -49,5 +49,5 @@ SpriteAtlas:
   - background
   - PlayerTexture
   m_RenderDataMap: {}
-  m_Tag: atlas
+  m_Tag: AtlasLevel
   m_IsVariant: 0
