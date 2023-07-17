@@ -7,11 +7,12 @@ public class BricksManager : MonoBehaviourGameplay
     [SerializeField] private List<BrickController> brickControllers;
     [SerializeField] private Dictionary<Vector2Int, BrickController> _bricksMatrix = new Dictionary<Vector2Int, BrickController>();
     [SerializeField] private Vector2Int _gridSize;
-
     [SerializeField] private int _powers = 3;
+    public ObjectPool objectPool;
 
     private void Awake()
     {
+        objectPool.InitializePool();
         _bricksMatrix = new Dictionary<Vector2Int, BrickController>();
         var x = 0;
         var y = 0;

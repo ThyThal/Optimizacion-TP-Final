@@ -16,7 +16,7 @@ public class BrickController : MonoBehaviourGameplay
     [SerializeField] private bool _powered = false;
     [SerializeField] private Material _powerMaterial;
     [SerializeField] private GameObject _powerObject;
-
+    [SerializeField] private BricksManager bricksManager;
     public event Action<BrickController> BrickDestroyedEvent;
     private List<BrickController> neighborBricks = new List<BrickController>();
 
@@ -35,6 +35,7 @@ public class BrickController : MonoBehaviourGameplay
     {
         base.Awake();
         _collider = new CustomColliderBox(transform);
+        bricksManager = GetComponentInParent<BricksManager>();
     }
 
     public void SetPowered()
@@ -110,8 +111,9 @@ public class BrickController : MonoBehaviourGameplay
 
     private void SpawnPower()
     {
-        var power = Instantiate(_powerObject);
+        var power = bricksManager.objectPool.GetObject();
         power.transform.position = transform.position;
+        power.SetActive(true);
     }
 
     private void OnDrawGizmos()

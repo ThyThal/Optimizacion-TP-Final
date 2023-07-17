@@ -20,13 +20,13 @@ public class PowerController : MonoBehaviourGameplay
     {
         if (_collider.CheckCollision(GameManager.Instance.LevelManager.GetPlayer.GetCollider))
         {
-            Destroy(this.gameObject);
+            gameObject.SetActive(false);
             GameManager.Instance.LevelManager.DoPower();
         }
 
         else if (_collider.CheckCollision(GameManager.Instance.LevelManager.GetDeathCollider))
         {
-            Destroy(this.gameObject);
+            gameObject.SetActive(false);
         }
 
         else

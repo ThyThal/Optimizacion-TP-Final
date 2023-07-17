@@ -3130,6 +3130,7 @@ MonoBehaviour:
   - {fileID: 2067304234}
   _gridSize: {x: 7, y: 7}
   _powers: 10
+  objectPool: {fileID: 1409788782}
 --- !u!114 &1409788782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3143,7 +3144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 8081528838634602619, guid: 2d5def59a61e9df49b73e2115a2cabb5, type: 3}
-  poolSize: 10
+  poolSize: 5
 --- !u!114 &1414319784 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: -6798617772600086125, guid: 2eb7b05471d6a5a45a7f0e38dc0421ef, type: 3}
