@@ -11,6 +11,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private PlayerController player;
     [SerializeField] private List<BallController> _balls;
     [SerializeField] private CustomColliderBox _colliderDeath;
+    [SerializeField] private CanvasLevel levelCanvas;
     public bool isStarted;
     private float _lives;
 
@@ -53,6 +54,9 @@ public class LevelManager : MonoBehaviour
         isStarted = false;
         _lives--;
         player.StopMovement();
+
+        levelCanvas.LostLife();
+
         if (_lives > 0)
         {
             SpawnBall();
@@ -65,6 +69,7 @@ public class LevelManager : MonoBehaviour
 
     public void LoseGame()
     {
+        levelCanvas.Defeat();
         // Pantalla de derrota
     }
 

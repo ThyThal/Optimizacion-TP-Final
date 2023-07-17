@@ -7525,6 +7525,7 @@ MonoBehaviour:
   _balls: []
   _colliderDeath:
     _transform: {fileID: 1778013600}
+  levelCanvas: {fileID: 1638642542}
   isStarted: 0
 --- !u!4 &2028747228
 Transform:
