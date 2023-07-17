@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviourGameplay
 
     public override void ManagedUpdate()
     {
-        if(Input.GetKeyDown(KeyCode.Space)) GameManager.Instance.LevelManager.StartGame();
+        if(Input.GetKey(KeyCode.Space)) GameManager.Instance.LevelManager.StartGame();
         
         if(!GameManager.Instance.LevelManager.isStarted) return;
         // Check for collision with all balls.

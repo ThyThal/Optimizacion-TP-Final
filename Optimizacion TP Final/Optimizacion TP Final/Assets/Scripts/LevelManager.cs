@@ -11,6 +11,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private PlayerController player;
     [SerializeField] private List<BallController> _balls;
     [SerializeField] private CustomColliderBox _colliderDeath;
+    [SerializeField] private ObjectPool objectPool;
     public bool isStarted;
     private float _lives;
 
@@ -22,7 +23,9 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         _lives = 3;
+        objectPool.InitializePool();
         SpawnBall();
+        
     }
     
 
@@ -30,12 +33,12 @@ public class LevelManager : MonoBehaviour
     {
         if(isStarted) return;
         isStarted = true;
-        _balls[0].StartMovement();
     }
     
     public void SpawnBall()
     {
-        GameObject newBall = Instantiate(ballPrefab, ballSpawnPoint.position, quaternion.identity);
+        GameObject newBall = objectPool.GetObject();
+        newBall.transform.position = ballSpawnPoint.position;
         _balls.Add(newBall.GetComponent<BallController>());
     }
     public void CheckDefeat(BallController lostBall)
@@ -70,6 +73,7 @@ public class LevelManager : MonoBehaviour
 
     public void DoPower()
     {
-        CustomLogger.Log("[TODO]: Spawn Extra Balls.");
+        SpawnBall();
+        SpawnBall();
     }
 }

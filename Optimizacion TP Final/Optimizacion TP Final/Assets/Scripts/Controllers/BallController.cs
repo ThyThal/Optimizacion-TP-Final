@@ -19,6 +19,7 @@ public class BallController : MonoBehaviourGameplay
         _collider = new CustomColliderSphere(transform);
         _physics = new CustomPhysics(transform, _collider);
         _physics.SetSpeed(speed);
+        StartMovement();
     }
 
     public override void ManagedUpdate()
