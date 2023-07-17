@@ -54,14 +54,14 @@ public class LevelManager : MonoBehaviour
     {
         _balls.Remove(lostBall);
         
-        if (_balls.Count == 0 && _lives > 1)
+        if (_balls.Count == 0 && _lives >= 1)
         {
             LoseLife();
-        }
 
-        else
-        {
-            LoseGame();
+            if (_lives <= 0)
+            {
+                LoseGame();
+            }
         }
     }
 
