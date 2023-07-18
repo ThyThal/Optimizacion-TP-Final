@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviourGameplay
     public bool WaitingForShoot => _waitingForShoot;
     public CustomColliderBox GetCollider => _collider;
 
+    private BallController _ballCollisionCheck;
+
     public override void Awake()
     {
         base.Awake();
@@ -49,16 +51,12 @@ public class PlayerController : MonoBehaviourGameplay
         // Check for collision with all balls.
         for (var index = 0; index < GameManager.Instance.LevelManager.Balls.Count; index++)
         {
-            BallController ballController = GameManager.Instance.LevelManager.GetBallController(index);
-
-            /*
-             * Hay que checkear si toca los costados y si toca perder la pelota.
-             */
+            _ballCollisionCheck = GameManager.Instance.LevelManager.GetBallController(index);
 
             // Check collision with ball.
-            if (_collider.CheckCollision(ballController.GetCollider))
+            if (_collider.CheckCollision(_ballCollisionCheck.GetCollider))
             {
-                ballController.ReflectWithPlayer(transform.position);
+                _ballCollisionCheck.ReflectWithPlayer(transform.position);
             }
         }
 

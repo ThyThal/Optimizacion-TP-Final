@@ -11,6 +11,8 @@ public class WallController : MonoBehaviourGameplay
 
     public ICollider GetCollider => _collider;
 
+    private BallController _ballCollisionCheck;
+
     public override void Awake()
     {
         base.Awake();
@@ -22,19 +24,19 @@ public class WallController : MonoBehaviourGameplay
         // Check for collision with all balls.
         for (var index = 0; index < GameManager.Instance.LevelManager.Balls.Count; index++)
         {
-            var ballController = GameManager.Instance.LevelManager.GetBallController(index);
+            _ballCollisionCheck = GameManager.Instance.LevelManager.GetBallController(index);
 
             // Check collision with ball.
-            if (!_collider.CheckCollision(ballController.GetCollider)) continue;
+            if (!_collider.CheckCollision(_ballCollisionCheck.GetCollider)) continue;
             
             if (_death)
             {
-                ballController.DestroyBall();
+                _ballCollisionCheck.DestroyBall();
             }
 
             else
             {
-                ballController.Reflect();
+                _ballCollisionCheck.Reflect();
             }
         }
     }

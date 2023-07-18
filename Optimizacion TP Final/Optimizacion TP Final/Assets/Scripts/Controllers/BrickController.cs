@@ -20,6 +20,8 @@ public class BrickController : MonoBehaviourGameplay
     public event Action<BrickController> BrickDestroyedEvent;
     private List<BrickController> neighborBricks = new List<BrickController>();
 
+    private BallController _ballCollisionCheck;
+
     public Vector2Int Index {
         get {return _index;}
         set { _index = value;}}
@@ -56,12 +58,12 @@ public class BrickController : MonoBehaviourGameplay
         // Check for collision with all balls.
         for (var index = 0; index < GameManager.Instance.LevelManager.Balls.Count; index++)
         {
-            BallController ballController = GameManager.Instance.LevelManager.GetBallController(index);
+            _ballCollisionCheck = GameManager.Instance.LevelManager.GetBallController(index);
 
             // Check collision with ball.
-            if (!_collider.CheckCollision(ballController.GetCollider)) continue;
-            
-            ballController.Reflect();
+            if (!_collider.CheckCollision(_ballCollisionCheck.GetCollider)) continue;
+
+            _ballCollisionCheck.Reflect();
             DestroyBrick();
         }
     }
