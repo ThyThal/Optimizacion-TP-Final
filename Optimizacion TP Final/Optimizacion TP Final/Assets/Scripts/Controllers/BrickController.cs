@@ -14,7 +14,6 @@ public class BrickController : MonoBehaviourGameplay
     [Header("Powered Components")]
     [SerializeField] private MeshRenderer _meshRenderer;
     [SerializeField] private bool _powered = false;
-    [SerializeField] private Material _powerMaterial;
     [SerializeField] private GameObject _powerObject;
     [SerializeField] private BricksManager bricksManager;
     public event Action<BrickController> BrickDestroyedEvent;
@@ -40,7 +39,6 @@ public class BrickController : MonoBehaviourGameplay
     public void SetPowered()
     {
         _powered = true;
-        _meshRenderer.material = _powerMaterial;
         transform.Rotate(0, 180, 0);
     }
 
