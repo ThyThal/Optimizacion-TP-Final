@@ -1,13 +1,14 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!687078895 &4343727234628468602
-SpriteAtlas:
+--- !u!612988286 &1
+SpriteAtlasAsset:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: AtlasLevel
-  m_EditorData:
+  m_Name: 
+  m_MasterAtlas: {fileID: 0}
+  m_ImporterData:
     serializedVersion: 2
     textureSettings:
       serializedVersion: 2
@@ -40,28 +41,8 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 6b9e4bae68b83ec44a26145b174d6324, type: 3}
     - {fileID: 2800000, guid: cd2dc7e8978627848ac30d2e1e2cb628, type: 3}
     - {fileID: 2800000, guid: 4eb0efd08392a1844aee69c732721805, type: 3}
+    - {fileID: 2800000, guid: 30d0959582dd19b41a06d5ae949ddf06, type: 3}
     bindAsDefault: 1
-    isAtlasV2: 0
+    isAtlasV2: 1
     cachedData: {fileID: 0}
-  m_MasterAtlas: {fileID: 0}
-  m_PackedSprites:
-  - {fileID: 21300000, guid: fc5dba806a21c704ea167b0c4146defc, type: 3}
-  - {fileID: 21300000, guid: 4eb0efd08392a1844aee69c732721805, type: 3}
-  - {fileID: 21300000, guid: 96edd645c807cc74dbea8963aa406371, type: 3}
-  - {fileID: 21300000, guid: cd2dc7e8978627848ac30d2e1e2cb628, type: 3}
-  - {fileID: 21300000, guid: 01695b89fea92f54397f1d68004e3d01, type: 3}
-  - {fileID: 21300000, guid: 90974d2ebca93744284787b6ed185e7a, type: 3}
-  - {fileID: 21300000, guid: 6b9e4bae68b83ec44a26145b174d6324, type: 3}
-  - {fileID: 21300000, guid: 9b5f2a9fa61d64047a75b37e11db9fef, type: 3}
-  m_PackedSpriteNamesToIndex:
-  - HD-wallpaper-green-colors-neon-simple 1
-  - whiteImage 1
-  - SpriteColor
-  - background 1
-  - PlayerTexture
-  - factory_elastic_ball 1
-  - cube 1
-  - PunchBox
-  m_RenderDataMap: {}
-  m_Tag: AtlasLevel
   m_IsVariant: 0
