@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviourGameplay
             // Check collision with ball.
             if (_collider.CheckCollision(ballController.GetCollider))
             {
-                ballController.Reflect();
+                ballController.ReflectWithPlayer(transform.position);
             }
         }
 

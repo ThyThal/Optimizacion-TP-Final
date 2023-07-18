@@ -33,6 +33,12 @@ public class BallController : MonoBehaviourGameplay
         _physics.Reflect(_collider.CollisionNormal);
     }
 
+    public void ReflectWithPlayer(Vector2 playerPos)
+    {
+        var dir = _physics.Reflect(_collider.CollisionNormal);
+        _physics.SetDirection(dir + PlayerHitFactor(playerPos));
+    }
+
     public void DestroyBall()
     {
         GameManager.Instance.LevelManager.CheckDefeat(this);
@@ -57,5 +63,11 @@ public class BallController : MonoBehaviourGameplay
         {
             StartMovement();
         }
+    }
+
+    public Vector2 PlayerHitFactor(Vector2 racketPos)
+    {
+        return new Vector2((transform.position.x - racketPos.x) / 5f, 0f); // 5 es el ancho del player
+        
     }
 }

@@ -23,13 +23,14 @@ public class CustomPhysics
 
     public void SetDirection(Vector2 direction)
     {
-        _direction = direction;
+        _direction = direction.normalized;
     }
 
-    public void Reflect(Vector2 collisionNormal)
+    public Vector2 Reflect(Vector2 collisionNormal)
     {
         var reflectionDirection = Vector2.Reflect(_direction, collisionNormal);
         _direction = reflectionDirection;
+        return reflectionDirection;
     }
 
     public void UpdatePhysics()
