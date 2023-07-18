@@ -11,7 +11,9 @@ public class CanvasLevel : MonoBehaviourUI
     [SerializeField] public TMP_Text textFinal;
     [SerializeField] private GameObject panelLevel;
     [SerializeField] private RawImage[] currentLife;
-    
+
+    [SerializeField] private TMP_Text _bricks;
+
     private int lastIndex;
     public override void Awake()
     {
@@ -34,6 +36,11 @@ public class CanvasLevel : MonoBehaviourUI
             currentLife[lastIndex].enabled = false;
             lastIndex--;
         }
+    }
+
+    public void UpdateBricks(int current, int total)
+    {
+        _bricks.text = $"Bricks: ({current}/{total})";
     }
 
     //llamar cuando se gana

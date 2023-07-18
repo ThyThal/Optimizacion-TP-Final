@@ -5,16 +5,16 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviourUI
 {
-    [SerializeField] private TMP_Text _lives;
-    [SerializeField] private TMP_Text _bricks;
+//    [SerializeField] private TMP_Text _lives;
+//    [SerializeField] private TMP_Text _bricks;
 
-    public void UpdateLives(int amount)
-    {
-        _lives.text = $"Lives: {amount}";
-    }
+//    public void UpdateLives(int amount)
+//    {
+//        _lives.text = $"Lives: {amount}";
+//    }
 
-    public void UpdateBricks(int current, int total)
-    {
-        _bricks.text = $"Bricks: ({current}/{total})";
-    }
+//    public void UpdateBricks(int current, int total)
+//    {
+//        _bricks.text = $"Bricks: ({current}/{total})";
+//    }
 }

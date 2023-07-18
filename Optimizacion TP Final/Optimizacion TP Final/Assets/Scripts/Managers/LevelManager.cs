@@ -35,7 +35,7 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         _lives = 3;
-        _uiManager.UpdateBricks(0, _bricksManager.TotalBricks);;
+        canvasLevel.UpdateBricks(0, _bricksManager.TotalBricks);;
     }
     
 
@@ -117,7 +117,7 @@ public class LevelManager : MonoBehaviour
     public void DestroyedBrick()
     {
         _destroyed++;
-        _uiManager.UpdateBricks(_destroyed, _bricksManager.TotalBricks);
+        canvasLevel.UpdateBricks(_destroyed, _bricksManager.TotalBricks);
 
         CheckWin(_destroyed);
 
