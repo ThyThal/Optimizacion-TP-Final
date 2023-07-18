@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     [SerializeField] private UIManager _uiManager;
+    [SerializeField] private CanvasLevel canvasLevel;
     [SerializeField] private BricksManager _bricksManager;
     [SerializeField] private GameObject ballPrefab;
     [SerializeField] private Transform ballSpawnPoint;
@@ -83,13 +84,15 @@ public class LevelManager : MonoBehaviour
 
     public void LoseGame()
     {
-        SceneManager.LoadScene("Menu");
+        canvasLevel.Defeat();
+        //SceneManager.LoadScene("Menu");
     }
 
     private void LoseLife()
     {
+        //_uiManager.UpdateLives(_lives);
+        canvasLevel.LostLife();
         _lives--;
-        _uiManager.UpdateLives(_lives);
         player.SpawnNewBall();
     }
 
@@ -115,5 +118,16 @@ public class LevelManager : MonoBehaviour
     {
         _destroyed++;
         _uiManager.UpdateBricks(_destroyed, _bricksManager.TotalBricks);
+
+        CheckWin(_destroyed);
+
+    }
+
+    public void CheckWin(int bricksDestroyed)
+    {
+        if (bricksDestroyed == _bricksManager.TotalBricks)
+        {
+            canvasLevel.Win();
+        }
     }
 }

@@ -8,7 +8,7 @@ public class CanvasLevel : MonoBehaviourUI
 {
     [SerializeField] LevelManager levelManager;
     [SerializeField] private Canvas endPanel;
-    [SerializeField] public TextMeshProUGUI textFinal;
+    [SerializeField] public TMP_Text textFinal;
     [SerializeField] private GameObject panelLevel;
     [SerializeField] private RawImage[] currentLife;
     private int lastIndex;
