@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class WinCanvasScript : MonoBehaviourGameplay
@@ -11,7 +10,7 @@ public class WinCanvasScript : MonoBehaviourGameplay
     // Update is called once per frame
     public override void ManagedUpdate()
     {
-        if (canvas.isActiveAndEnabled && Input.GetKey(KeyCode.Space)) 
+        if (canvas.isActiveAndEnabled && Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Escape)) 
         {
             SceneManager.LoadScene(0);
         }

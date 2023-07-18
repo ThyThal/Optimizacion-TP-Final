@@ -11,6 +11,7 @@ public class CanvasLevel : MonoBehaviourUI
     [SerializeField] public TMP_Text textFinal;
     [SerializeField] private GameObject panelLevel;
     [SerializeField] private RawImage[] currentLife;
+    
     private int lastIndex;
     public override void Awake()
     {
@@ -23,7 +24,8 @@ public class CanvasLevel : MonoBehaviourUI
             currentLife[i].enabled = true;
         }
     }
-
+    
+   
     //llamar cada vez que pierde vida
     public void LostLife()
     {
@@ -51,6 +53,6 @@ public class CanvasLevel : MonoBehaviourUI
     //se llama desde el boton
     public void BackToMenu()
     {
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene(0);
     }
 }

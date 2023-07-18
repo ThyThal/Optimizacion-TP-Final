@@ -430,6 +430,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 481337622}
     m_Modifications:
+    - target: {fileID: 4517562605189560384, guid: b3c6fbb1217e5054ba69ca8ec92a394b, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4517562605189560386, guid: b3c6fbb1217e5054ba69ca8ec92a394b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -522,7 +526,8 @@ PrefabInstance:
       propertyPath: levelManager
       value: 
       objectReference: {fileID: 2028747227}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1519028047, guid: b3c6fbb1217e5054ba69ca8ec92a394b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b3c6fbb1217e5054ba69ca8ec92a394b, type: 3}
 --- !u!114 &237256767 stripped
 MonoBehaviour:
