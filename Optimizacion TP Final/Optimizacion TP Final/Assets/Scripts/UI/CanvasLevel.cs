@@ -10,12 +10,12 @@ public class CanvasLevel : MonoBehaviourUI
     [SerializeField] private Canvas endPanel;
     [SerializeField] public TMP_Text textFinal;
     [SerializeField] private GameObject panelLevel;
-    [SerializeField] private RawImage[] currentLife;
+    [SerializeField] private Image[] currentLife;
 
     [SerializeField] private TMP_Text _bricks;
 
     private int lastIndex;
-    public override void Awake()
+    public void Awake()
     {
         endPanel.enabled = false;
         lastIndex = currentLife.Length - 1;

@@ -11,7 +11,7 @@ public class SpriteFromAtlas : MonoBehaviour
 
     void Start()
     {
-        GetComponent<Image>().sprite = atlas.GetSprite(spriteName);
+        GetComponent<Image>().sprite = atlas.GetSprite(spriteName); 
     }
 
     

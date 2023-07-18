@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -186,7 +186,6 @@ GameObject:
   - component: {fileID: 288362868}
   - component: {fileID: 288362867}
   - component: {fileID: 288362866}
-  - component: {fileID: 288362865}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -194,23 +193,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &288362865
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 288362864}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!114 &288362866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -357,6 +339,7 @@ GameObject:
   - component: {fileID: 1002140288}
   - component: {fileID: 1002140290}
   - component: {fileID: 1002140289}
+  - component: {fileID: 1002140291}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -398,13 +381,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1944605010, guid: 30d0959582dd19b41a06d5ae949ddf06, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -422,6 +405,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1002140287}
   m_CullTransparentMesh: 1
+--- !u!114 &1002140291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1002140287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33e53025d27f99e46bbd95565d9c9754, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  atlas: {fileID: 100100200, guid: a912fee666bd7cc408eef0d5a6f3f7fe, type: 3}
+  spriteName: BrickBraker_0
 --- !u!1 &1352623515
 GameObject:
   m_ObjectHideFlags: 0
@@ -517,6 +514,7 @@ GameObject:
   - component: {fileID: 1364957217}
   - component: {fileID: 1364957219}
   - component: {fileID: 1364957218}
+  - component: {fileID: 1364957220}
   m_Layer: 5
   m_Name: Image (1)
   m_TagString: Untagged
@@ -558,7 +556,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -582,6 +580,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1364957216}
   m_CullTransparentMesh: 1
+--- !u!114 &1364957220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1364957216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33e53025d27f99e46bbd95565d9c9754, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  atlas: {fileID: 100100200, guid: a912fee666bd7cc408eef0d5a6f3f7fe, type: 3}
+  spriteName: BrickBraker_1
 --- !u!1 &1516668029
 GameObject:
   m_ObjectHideFlags: 0
