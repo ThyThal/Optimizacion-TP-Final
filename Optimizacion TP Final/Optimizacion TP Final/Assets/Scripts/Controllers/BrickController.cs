@@ -41,6 +41,7 @@ public class BrickController : MonoBehaviourGameplay
     {
         _powered = true;
         _meshRenderer.material = _powerMaterial;
+        transform.Rotate(0, 180, 0);
     }
 
     public override void ManagedUpdate()
