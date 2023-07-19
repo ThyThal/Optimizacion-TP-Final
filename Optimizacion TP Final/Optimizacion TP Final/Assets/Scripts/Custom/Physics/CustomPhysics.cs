@@ -35,11 +35,6 @@ public class CustomPhysics
 
     public void UpdatePhysics()
     {
-
-        var last = CustomUpdateManager.Instance.CustomUpdateGameplay.PreviousUpdate;
-        var current = CustomUpdateManager.Instance.CustomUpdateGameplay.LastUpdate;
-        var delta = current - last;
-
-        _transform.Translate(_direction * _speed * delta);
+        _transform.Translate(_direction.normalized * _speed * CustomUpdateManager.Instance.CustomUpdateGameplay.GetDeltaTime);
     }
 }

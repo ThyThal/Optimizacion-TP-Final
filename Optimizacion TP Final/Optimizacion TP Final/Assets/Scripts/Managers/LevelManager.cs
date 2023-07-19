@@ -5,7 +5,7 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LevelManager : MonoBehaviour
+public class LevelManager : MonoBehaviourGameplay
 {
     [SerializeField] private GameUIManager _uiManager;
     [SerializeField] private BricksManager _bricksManager;
@@ -15,6 +15,8 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private List<BallController> _balls;
     [SerializeField] private CustomColliderBox _colliderDeath;
     [SerializeField] private ObjectPool _ballsPool;
+    [SerializeField] private float gameTime = 0f;
+
     public bool isStarted;
 
     private bool _finishedGame = false;
@@ -29,8 +31,9 @@ public class LevelManager : MonoBehaviour
     public PlayerController GetPlayer => player;
     public BallController GetBallController(int index) => _balls[index];
 
-    private void Awake()
+    public override void Awake()
     {
+        base.Awake();
         GameManager.Instance.LevelManager = this;
         _ballsPool.InitializePool();
     }
@@ -40,7 +43,13 @@ public class LevelManager : MonoBehaviour
         _lives = 3;
         _uiManager.UpdateBricks(0, _bricksManager.TotalBricks);;
     }
-    
+
+    public override void ManagedUpdate()
+    {
+        if (FinishedGame) return;
+        gameTime += CustomUpdateManager.Instance.CustomUpdateGameplay.GetDeltaTime;
+    }
+
 
     public void SpawnPlayerBall()
     {
@@ -109,5 +118,15 @@ public class LevelManager : MonoBehaviour
             _finishedGame = true;
             _uiManager.ShowWin();
         }
+    }
+
+    public string GetFormattedTime()
+    {
+        int hours = Mathf.FloorToInt(gameTime / 3600);
+        int minutes = Mathf.FloorToInt((gameTime % 3600) / 60);
+        int seconds = Mathf.FloorToInt(gameTime % 60);
+
+        string formattedTime = $"{hours}h {minutes}m {seconds}s";
+        return formattedTime;
     }
 }

@@ -105,4 +105,4 @@ MonoBehaviour:
     _direction: {x: 0, y: 0}
     _speed: 0
   _playerBall: 0
-  _speed: 20
+  _speed: 15

@@ -1,18 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
-public class Timer : MonoBehaviour
+public class Timer : MonoBehaviourUI
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private TMP_Text _textTimer;
 
-    // Update is called once per frame
-    void Update()
+    public override void ManagedUpdate()
     {
-        
+        _textTimer.text = $"{GameManager.Instance.LevelManager.GetFormattedTime()}";
     }
 }

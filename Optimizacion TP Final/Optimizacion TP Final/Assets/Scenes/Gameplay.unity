@@ -442,6 +442,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 763570750, guid: b3c6fbb1217e5054ba69ca8ec92a394b, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 1131646974, guid: b3c6fbb1217e5054ba69ca8ec92a394b, type: 3}
+      propertyPath: m_Name
+      value: Timer Text
+      objectReference: {fileID: 0}
+    - target: {fileID: 1131646975, guid: b3c6fbb1217e5054ba69ca8ec92a394b, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 125
+      objectReference: {fileID: 0}
+    - target: {fileID: 1131646976, guid: b3c6fbb1217e5054ba69ca8ec92a394b, type: 3}
+      propertyPath: m_text
+      value: 00h 00m 00s
+      objectReference: {fileID: 0}
+    - target: {fileID: 1131646976, guid: b3c6fbb1217e5054ba69ca8ec92a394b, type: 3}
+      propertyPath: m_fontSize
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 1131646976, guid: b3c6fbb1217e5054ba69ca8ec92a394b, type: 3}
+      propertyPath: m_fontSizeMax
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 1131646976, guid: b3c6fbb1217e5054ba69ca8ec92a394b, type: 3}
+      propertyPath: m_fontSizeMin
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4517562605189560385, guid: b3c6fbb1217e5054ba69ca8ec92a394b, type: 3}
       propertyPath: m_Camera
       value: 
@@ -1618,6 +1646,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aeda11733250b134580e587f40847d5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _textTimer: {fileID: 1131646976}
 --- !u!1001 &773376036
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2832,6 +2861,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 560721400187709613, guid: 2eb7b05471d6a5a45a7f0e38dc0421ef, type: 3}
   m_PrefabInstance: {fileID: 1054420156}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1131646976 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1131646976, guid: b3c6fbb1217e5054ba69ca8ec92a394b, type: 3}
+  m_PrefabInstance: {fileID: 237244069}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1143943133 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: -6798617772600086125, guid: 2eb7b05471d6a5a45a7f0e38dc0421ef, type: 3}
@@ -4702,7 +4742,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1778013594}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -19.25, z: 0}
+  m_LocalPosition: {x: 0, y: -19.5, z: 0}
   m_LocalScale: {x: 31, y: 18.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

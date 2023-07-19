@@ -53,7 +53,6 @@ public class CustomUpdateManager : MonoBehaviour
             #endif
 
 
-            customUpdate.DoTick();
 
             for (int i = customUpdate.GetManagedObjects.Count - 1; i >= 0; i--)
             {
@@ -63,6 +62,8 @@ public class CustomUpdateManager : MonoBehaviour
                     managedObject.ManagedUpdate();
                 }
             }
+
+            customUpdate.DoTick();
         }
     }
 
