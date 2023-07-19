@@ -442,18 +442,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4517562604760003938, guid: b3c6fbb1217e5054ba69ca8ec92a394b, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4517562605189560385, guid: b3c6fbb1217e5054ba69ca8ec92a394b, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
-    - target: {fileID: 4517562605189560385, guid: b3c6fbb1217e5054ba69ca8ec92a394b, type: 3}
-      propertyPath: m_AdditionalShaderChannelsFlag
-      value: 25
-      objectReference: {fileID: 0}
     - target: {fileID: 4517562605189560386, guid: b3c6fbb1217e5054ba69ca8ec92a394b, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -541,10 +533,6 @@ PrefabInstance:
     - target: {fileID: 4517562605189560399, guid: b3c6fbb1217e5054ba69ca8ec92a394b, type: 3}
       propertyPath: m_Name
       value: Game UI
-      objectReference: {fileID: 0}
-    - target: {fileID: 6897224392039074632, guid: b3c6fbb1217e5054ba69ca8ec92a394b, type: 3}
-      propertyPath: m_Enabled
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7666792176112264630, guid: b3c6fbb1217e5054ba69ca8ec92a394b, type: 3}
       propertyPath: levelManager
@@ -1613,6 +1601,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2eb7b05471d6a5a45a7f0e38dc0421ef, type: 3}
+--- !u!1 &763570749 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 763570749, guid: b3c6fbb1217e5054ba69ca8ec92a394b, type: 3}
+  m_PrefabInstance: {fileID: 237244069}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &763570753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 763570749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aeda11733250b134580e587f40847d5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &773376036
 PrefabInstance:
   m_ObjectHideFlags: 0
