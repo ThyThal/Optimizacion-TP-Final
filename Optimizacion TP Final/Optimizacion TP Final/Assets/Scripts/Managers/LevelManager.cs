@@ -7,8 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField] private UIManager _uiManager;
-    [SerializeField] private CanvasLevel canvasLevel;
+    [SerializeField] private GameUIManager _uiManager;
     [SerializeField] private BricksManager _bricksManager;
     [SerializeField] private GameObject ballPrefab;
     [SerializeField] private Transform ballSpawnPoint;
@@ -18,9 +17,13 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private ObjectPool _ballsPool;
     public bool isStarted;
 
+    private bool _finishedGame = false;
+
     private int _lives;
     private int _destroyed;
 
+
+    public bool FinishedGame => _finishedGame;
     public CustomColliderBox GetDeathCollider => _colliderDeath;
     public List<BallController> Balls => _balls;
     public PlayerController GetPlayer => player;
@@ -35,7 +38,7 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         _lives = 3;
-        canvasLevel.UpdateBricks(0, _bricksManager.TotalBricks);;
+        _uiManager.UpdateBricks(0, _bricksManager.TotalBricks);;
     }
     
 
@@ -44,13 +47,7 @@ public class LevelManager : MonoBehaviour
         if(isStarted) return;
         isStarted = true;
     }
-    /*
-    public void SpawnBall()
-    {
-        GameObject newBall = _ballsPool.GetObject();
-        newBall.transform.position = ballSpawnPoint.position;
-        _balls.Add(newBall.GetComponent<BallController>());
-    }*/
+
     public void CheckDefeat(BallController lostBall)
     {
         _balls.Remove(lostBall);
@@ -66,33 +63,16 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    /*
-    public void RestartGame()
-    {
-        isStarted = false;
-        _lives--;
-        player.StopMovement();
-        if (_lives > 0)
-        {
-            //SpawnBall();
-        }
-        else
-        {
-            LoseGame();
-        }
-    }*/
-
     public void LoseGame()
     {
-        canvasLevel.Defeat();
-        //SceneManager.LoadScene("Menu");
+        _finishedGame = true;
+        _uiManager.ShowLose();
     }
 
     private void LoseLife()
     {
-        //_uiManager.UpdateLives(_lives);
-        canvasLevel.LostLife();
         _lives--;
+        _uiManager.UpdateLives(_lives);
         player.SpawnNewBall();
     }
 
@@ -117,17 +97,17 @@ public class LevelManager : MonoBehaviour
     public void DestroyedBrick()
     {
         _destroyed++;
-        canvasLevel.UpdateBricks(_destroyed, _bricksManager.TotalBricks);
-
+        _uiManager.UpdateBricks(_destroyed, _bricksManager.TotalBricks);
         CheckWin(_destroyed);
 
     }
 
     public void CheckWin(int bricksDestroyed)
     {
-        if (bricksDestroyed == _bricksManager.TotalBricks)
+        if (bricksDestroyed >= _bricksManager.TotalBricks)
         {
-            canvasLevel.Win();
+            _finishedGame = true;
+            _uiManager.ShowWin();
         }
     }
 }
