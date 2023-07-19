@@ -3993,7 +3993,7 @@ MonoBehaviour:
   - {fileID: 1373699079}
   - {fileID: 2067304234}
   _gridSize: {x: 7, y: 7}
-  _powers: 10
+  _powers: 3
   objectPool: {fileID: 1409788782}
 --- !u!114 &1409788782
 MonoBehaviour:
@@ -4008,7 +4008,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 8081528838634602619, guid: 2d5def59a61e9df49b73e2115a2cabb5, type: 3}
-  poolSize: 5
+  poolSize: 6
   pool: []
 --- !u!114 &1414319784 stripped
 MonoBehaviour:
@@ -5724,7 +5724,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2019654276}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.2582817, z: 0.5}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
   m_LocalScale: {x: 32, y: 59, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
