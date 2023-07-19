@@ -6,6 +6,8 @@ using UnityEngine;
 public class CustomColliderBox : CustomColliderBase
 {
     [SerializeField] private Transform _transform;
+    private Bounds _boundsA;
+    private Bounds _boundsB;
 
     // Cache other collider.
     private ICollider _other;
@@ -13,6 +15,10 @@ public class CustomColliderBox : CustomColliderBase
     public CustomColliderBox(Transform transform)
     {
         _transform = transform;
+        // Se crean en constructor para evitar crear un new Bounds cada frame y optimizar Heap
+        _boundsA = new Bounds(_transform.localPosition, _transform.localScale);
+        _boundsB = new Bounds();
+
     }
 
     // Check Collision with Others.
@@ -52,11 +58,15 @@ public class CustomColliderBox : CustomColliderBase
     private bool CheckCollisionWithBox(CustomColliderBox otherColliderBox)
     {
         // Calculate the bounds of each box collider
-        Bounds boundsA = new Bounds(_transform.localPosition, _transform.localScale);
-        Bounds boundsB = new Bounds(otherColliderBox._transform.localPosition, otherColliderBox._transform.localScale);
-
+        
+        //Bounds boundsA = new Bounds(_transform.localPosition, _transform.localScale);
+        //Bounds boundsB = new Bounds(otherColliderBox._transform.localPosition, otherColliderBox._transform.localScale);
+        _boundsA.center = _transform.localPosition;
+        _boundsB.center = otherColliderBox._transform.localPosition;
+        _boundsB.size = otherColliderBox._transform.localScale;
+        
         // Check if the bounds overlap
-        if (boundsA.Intersects(boundsB))
+        if (_boundsA.Intersects(_boundsB))
         {
             return true;
         }
@@ -71,6 +81,7 @@ public class CustomColliderBox : CustomColliderBase
     /// <returns></returns>
     private bool CheckCollisionWithSphere(CustomColliderSphere sphereCollider)
     {
+        // Lazy computation
         if (sphereCollider == null) return false;
 
         Vector2 closestPoint = Vector2.Max(_transform.position - _transform.localScale * 0.5f,
