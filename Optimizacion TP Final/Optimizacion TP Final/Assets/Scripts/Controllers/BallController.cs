@@ -25,6 +25,7 @@ public class BallController : MonoBehaviourGameplay
 
     public override void ManagedUpdate()
     {
+        if (GameManager.Instance.LevelManager.FinishedGame) return;
         _physics.UpdatePhysics();
     }
 

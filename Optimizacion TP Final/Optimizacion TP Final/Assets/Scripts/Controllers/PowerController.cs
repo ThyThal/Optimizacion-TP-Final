@@ -18,6 +18,7 @@ public class PowerController : MonoBehaviourGameplay
 
     public override void ManagedUpdate()
     {
+        if (GameManager.Instance.LevelManager.FinishedGame) return;
         if (GameManager.Instance.LevelManager.GetPlayer.WaitingForShoot) return;
 
         if (_collider.CheckCollision(GameManager.Instance.LevelManager.GetPlayer.GetCollider))

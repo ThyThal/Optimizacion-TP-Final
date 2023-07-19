@@ -44,6 +44,8 @@ public class BrickController : MonoBehaviourGameplay
 
     public override void ManagedUpdate()
     {
+        if (GameManager.Instance.LevelManager.FinishedGame) return;
+
         // Check collisions if is breakable.
         if (_breakable)
         {

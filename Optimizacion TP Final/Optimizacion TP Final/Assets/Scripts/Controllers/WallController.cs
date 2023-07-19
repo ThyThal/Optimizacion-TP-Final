@@ -21,6 +21,8 @@ public class WallController : MonoBehaviourGameplay
 
     public override void ManagedUpdate()
     {
+        if (GameManager.Instance.LevelManager.FinishedGame) return;
+
         // Check for collision with all balls.
         for (var index = 0; index < GameManager.Instance.LevelManager.Balls.Count; index++)
         {

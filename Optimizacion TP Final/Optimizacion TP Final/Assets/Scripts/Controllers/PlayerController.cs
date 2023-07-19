@@ -39,7 +39,9 @@ public class PlayerController : MonoBehaviourGameplay
     }
 
     public override void ManagedUpdate()
-    {                
+    {
+        if (GameManager.Instance.LevelManager.FinishedGame) return;
+
         CheckInputs();
         CheckCollisions();
     }
