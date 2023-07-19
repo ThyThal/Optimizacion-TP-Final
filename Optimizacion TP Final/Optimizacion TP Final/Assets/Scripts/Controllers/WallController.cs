@@ -25,7 +25,7 @@ public class WallController : MonoBehaviourGameplay
         // Check for collision with all balls.
         for (var index = 0; index < GameManager.Instance.LevelManager.Balls.Count; index++)
         {
-            _ballCollisionCheck = GameManager.Instance.LevelManager.GetBallController(index);
+            _ballCollisionCheck = GameManager.Instance.LevelManager.Balls[index];
 
             // Check collision with ball.
             if (!_collider.CheckCollision(_ballCollisionCheck.GetCollider)) continue;

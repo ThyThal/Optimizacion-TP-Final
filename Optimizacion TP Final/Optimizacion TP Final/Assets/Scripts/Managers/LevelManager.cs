@@ -29,7 +29,6 @@ public class LevelManager : MonoBehaviourGameplay
     public CustomColliderBox GetDeathCollider => _colliderDeath;
     public List<BallController> Balls => _balls;
     public PlayerController GetPlayer => player;
-    public BallController GetBallController(int index) => _balls[index];
 
     public override void Awake()
     {
