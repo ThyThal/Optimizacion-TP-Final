@@ -48,6 +48,11 @@ public class LevelManager : MonoBehaviourGameplay
     {
         if (FinishedGame) return;
         gameTime += CustomUpdateManager.Instance.CustomUpdateGameplay.GetDeltaTime;
+
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("Menu");
+        }
     }
 
 

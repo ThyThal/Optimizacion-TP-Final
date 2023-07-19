@@ -6,8 +6,7 @@ using UnityEngine;
 public class CustomColliderBox : CustomColliderBase
 {
     [SerializeField] private Transform _transform;
-    private Bounds _boundsA;
-    private Bounds _boundsB;
+    private Vector2 _halfLocalScale;
 
     // Cache other collider.
     private ICollider _other;
@@ -15,10 +14,7 @@ public class CustomColliderBox : CustomColliderBase
     public CustomColliderBox(Transform transform)
     {
         _transform = transform;
-        // Se crean en constructor para evitar crear un new Bounds cada frame y optimizar Heap
-        _boundsA = new Bounds(_transform.localPosition, _transform.localScale);
-        _boundsB = new Bounds();
-
+        _halfLocalScale = _transform.localScale / 2f;
     }
 
     // Check Collision with Others.
@@ -43,7 +39,7 @@ public class CustomColliderBox : CustomColliderBase
 
             // If is colliding with sphere continue.
             CalculateCollisionNormal(otherColliderSphere);
-            ResolveCollision(otherColliderSphere);
+            //ResolveCollision(otherColliderSphere);
             return true;
         }
 
@@ -57,21 +53,11 @@ public class CustomColliderBox : CustomColliderBase
     /// <returns></returns>
     private bool CheckCollisionWithBox(CustomColliderBox otherColliderBox)
     {
-        // Calculate the bounds of each box collider
-        
-        //Bounds boundsA = new Bounds(_transform.localPosition, _transform.localScale);
-        //Bounds boundsB = new Bounds(otherColliderBox._transform.localPosition, otherColliderBox._transform.localScale);
-        _boundsA.center = _transform.localPosition;
-        _boundsB.center = otherColliderBox._transform.localPosition;
-        _boundsB.size = otherColliderBox._transform.localScale;
-        
-        // Check if the bounds overlap
-        if (_boundsA.Intersects(_boundsB))
-        {
-            return true;
-        }
-
-        return false;
+        Vector2 halfOtherLocalScale = otherColliderBox._transform.localScale / 2f;
+        return (_transform.localPosition.x - _halfLocalScale.x < otherColliderBox._transform.localPosition.x + halfOtherLocalScale.x &&
+                _transform.localPosition.x + _halfLocalScale.x > otherColliderBox._transform.localPosition.x - halfOtherLocalScale.x &&
+                _transform.localPosition.y - _halfLocalScale.y < otherColliderBox._transform.localPosition.y + halfOtherLocalScale.y &&
+                _transform.localPosition.y + _halfLocalScale.y > otherColliderBox._transform.localPosition.y - halfOtherLocalScale.y );
     }
 
     /// <summary>
@@ -144,14 +130,15 @@ public class CustomColliderBox : CustomColliderBase
 
     private void ResolveCollision(CustomColliderSphere otherColliderSphere)
     {
-        Vector2 collisionNormal = _transform.position - otherColliderSphere._transform.position;
+        /*Vector2 collisionNormal = _transform.position - otherColliderSphere._transform.position;
         float penetrationDepth = Mathf.Abs(_transform.position.x - otherColliderSphere._transform.position.x) - (_transform.localScale.x + otherColliderSphere.Radius) / 2;
 
         float separationDistance = penetrationDepth + 0.001f;
         Vector3 correction = new Vector3(separationDistance * collisionNormal.x, separationDistance * collisionNormal.y, 0);
 
-        //_transform.position += correction;
-        //otherColliderSphere._transform.position -= correction;
+        _transform.position += correction;
+        otherColliderSphere._transform.position -= correction;
+        */
     }
 
     protected override void DrawGizmo()
